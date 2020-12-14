@@ -135,7 +135,6 @@ async function run() {
                 env._dir = dir;
             }
             let outputFile = path.join(outputDir, base);
-            console.log(`Rendering ${path.resolve(file)} => ${outputFile}`);
             let data = fs.readFileSync(file).toString();
             let renderedData = env.renderString(data, renderInput);
 
@@ -143,6 +142,7 @@ async function run() {
             renderedData = prepareHTML(renderedData);
 
             outputFile = replaceExtension(outputFile, "html");
+            console.log(`Rendering ${path.resolve(file)} => ${outputFile}`);
             fs.writeFileSync(outputFile, renderedData);
 
             mkdirp.sync(outputDirLocal);
