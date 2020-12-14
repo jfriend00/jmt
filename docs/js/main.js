@@ -12,6 +12,19 @@ const pages = [
     "Day 3 - Sunrise High Sierra Camp to Tuolumne Meadows", "day-3-sunrise-high-sierra-camp-to-tuolumne-meadows.html",
     "Day 4 - Tuolumne Meadows to Lake Before Lyell Glacier", "day-4-tuolumne-meadows-to-lake.html",
     "Day 5 - Over Donohue Pass and Down to Shadow Lake", "day-5-donohue-pass-to-shadow-lake.html",
+    "Day 6 - Shadow Lake to Red's Meadow", "day-6-shadow-lake-to-reds-meadow.html",
+    "Day 7 - Red's Meadow to Purple Lake", "day-7-reds-meadow-to-purple-lake.html",
+    "Day 8 - Purple Lake Over Silver Pass to Pocket Meadow", "day-8-purple-lake-to-pocket-meadow.html",
+    "Day 9 - Pocket Meadow to Rosemarie Meadow", "day-9-pocket-meadow-to-rosemarie-meadow.html",
+    "Day 10 - Over Selden Pass to MTR and Start the Climb to Muir Pass", "day-10-selden-pass-to-mtr.html",
+    "Day 11 - Aspen Meadow to Sapphire Lake", "day-11-aspen-meadow-to-sapphire-lake.html",
+    "Day 12 - Sapphire Lake Over Muir Pass to Deer Meadow", "day-12-sapphire-lake-to-deer-meadow.html",
+    "Day 13 - Deer Meadow Over Mather Pass to Kings River", "day-13-deer-Meadow-to-kings-river.html",
+    "Day 14 - Kings River over Pinchot Pass to Rae Lakes", "day-14-kings-river-to-rae-lakes.html",
+    "Day 15 - Rae Lakes over Glen Pass to Vidette Meadows", "day-15-rae-lakes-to-vidette-meadows.html",
+    "Day 16 - Over Forester Pass to Wright Creek", "day-16-over-forester-pass-to-wright-creek.html",
+    "Day 17 - Wright Creek to Guitar Lake", "day-17-wright-creek-to-guitar-lake.html",
+    "Day 18 - Guitar Lake to Whitney and Down to Whitney Portal", "day-18-guitar-lake-to-whitney-to-whitney-portal.html"
 ];
 
 function configureLinks() {
