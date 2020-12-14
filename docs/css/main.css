@@ -72,9 +72,14 @@ img.right {
   margin: 0;
 }
 
-.column {
+.plain {
+    text-decoration: none;
 }
 
 #navArrows {
     padding: 5px 0 0 5px;
+}
+
+body {
+    overflow-y: scroll;
 }
