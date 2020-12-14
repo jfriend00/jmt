@@ -27,39 +27,58 @@ const pages = [
     "Day 18 - Guitar Lake to Whitney and Down to Whitney Portal", "day-18-guitar-lake-to-whitney-to-whitney-portal.html"
 ];
 
-function configureLinks() {
+function getPageIndex() {
+    let pathname = window.location.pathname.toLowerCase();
+    let pieces = pathname.split("/");
+    let filename = pieces[pieces.length - 1];
+    if (filename === "index.html") {
+        filename = "";
+    }
+    let currentIndex = -1;
+    for (let i = 0; i < pages.length; i += 2) {
+        if (pages[i + 1] === filename) {
+            currentIndex = i;
+            break;
+        }
+    }
+    return currentIndex;
+}
+
+function configureBottomLinks(currentIndex) {
     let bottomNav = document.getElementById("bottom-nav");
     if (bottomNav) {
-        let pathname = window.location.pathname.toLowerCase();
-        let pieces = pathname.split("/");
-        let filename = pieces[pieces.length - 1];
-        console.log(filename);
-        if (filename === "index.html") {
-            filename = "";
-        }
-        let currentIndex = -1;
-        for (let i = 0; i < pages.length; i += 2) {
-            if (pages[i + 1] === filename) {
-                currentIndex = i;
-                break;
-            }
-        }
         if (currentIndex !== -1) {
             let html = "";
             if (currentIndex !== 0) {
                 html += `<a href="${pages[currentIndex - 1]}">Prev Page: ${pages[currentIndex - 2]}</a>`;
             }
-            if (currentIndex + 2 < pages.length) {
+            if (currentIndex + 3 < pages.length) {
                 if (currentIndex !== 0) {
                     html += " | ";
                 }
                 html += `<a href="${pages[currentIndex + 3]}">Next Page: ${pages[currentIndex + 2]}</a>`;
             }
             bottomNav.innerHTML = html;
-        } else {
-            console.log("Didn't find matching filename in the pages table");
         }
     }
 }
 
-configureLinks();
+function configureArrowLinks(currentIndex) {
+    let arrowLinks = document.querySelectorAll("#navArrows a");
+    if (arrowLinks.length >= 2 && currentIndex !== -1) {
+        if (currentIndex === 0) {
+            arrowLinks[0].href = window.location;
+        } else {
+            arrowLinks[0].href = pages[currentIndex - 1];
+        }
+        if (currentIndex + 3 > pages.length) {
+            arrowLinks[1].href = window.location;
+        } else {
+            arrowLinks[1].href = pages[currentIndex + 3];
+        }
+    }
+}
+
+let currentIndex = getPageIndex();
+configureBottomLinks(currentIndex);
+configureArrowLinks(currentIndex);
