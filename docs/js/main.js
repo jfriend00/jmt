@@ -19,7 +19,7 @@ const pages = [
     "Day 10 - Over Selden Pass to MTR and Start the Climb to Muir Pass", "day-10-selden-pass-to-mtr.html",
     "Day 11 - Aspen Meadow to Sapphire Lake", "day-11-aspen-meadow-to-sapphire-lake.html",
     "Day 12 - Sapphire Lake Over Muir Pass to Deer Meadow", "day-12-sapphire-lake-to-deer-meadow.html",
-    "Day 13 - Deer Meadow Over Mather Pass to Kings River", "day-13-deer-Meadow-to-kings-river.html",
+    "Day 13 - Deer Meadow Over Mather Pass to Kings River", "day-13-deer-meadow-to-kings-river.html",
     "Day 14 - Kings River over Pinchot Pass to Rae Lakes", "day-14-kings-river-to-rae-lakes.html",
     "Day 15 - Rae Lakes over Glen Pass to Vidette Meadows", "day-15-rae-lakes-to-vidette-meadows.html",
     "Day 16 - Over Forester Pass to Wright Creek", "day-16-over-forester-pass-to-wright-creek.html",
