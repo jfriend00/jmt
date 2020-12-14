@@ -84,3 +84,13 @@ img.right {
 body {
     overflow-y: scroll;
 }
+
+.caption {
+     font-style: italic;
+     text-align: center;
+}
+
+/* shrink these containers to the image width */
+.captionImageContainer, .captionImage {
+    width: max-content;
+}
