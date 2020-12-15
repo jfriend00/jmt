@@ -1,10 +1,24 @@
-{% macro captionImage(url, caption='') %}
+{# image with a caption (larger sizes available on Smugmug) #}
+{# todo item: add expando option for viewing larger sizes #}
+{% macro photo(url, caption='') %}
+{% if caption %}
 <table class="captionImage">
-    {% if caption %}<caption align="bottom">{{caption}}</caption>{% endif %}
-    <tr><td><img src={{url}}></td></tr>
+    <caption align="bottom">{{caption}}</caption>
+    <tr><td><img src="https://photos.smugmug.com/photos{{url}}"></td></tr>
 </table>
+{% else %}
+<img class="photo" src="https://photos.smugmug.com/photos{{url}}">
+{% endif %}
 {% endmacro %}
 
-{% macro image(url) %}
-<img class="photo" src={{url}}>
+{# image with a caption (no larger sizes available) #}
+{% macro image(url, caption='') %}
+{% if caption %}
+<table class="captionImage">
+    <caption align="bottom">{{caption}}</caption>
+    <tr><td><img src="images/{{url}}"></td></tr>
+</table>
+{% else %}
+<img class="photo" src="images/{{url}}">
+{% endif %}
 {% endmacro %}
