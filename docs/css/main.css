@@ -85,13 +85,10 @@ body {
     overflow-y: scroll;
 }
 
-.caption {
-     font-style: italic;
-     text-align: center;
+.captionImage, .captionImage img {
+    max-width: 100%;
 }
 
-/* shrink these containers to the image width */
-.captionImageContainer, .captionImage {
-    width: max-content;
-    max-width: 100%;
+.captionImage caption {
+    font-style: italic;
 }
