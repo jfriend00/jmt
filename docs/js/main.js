@@ -50,13 +50,13 @@ function configureBottomLinks(currentIndex) {
         if (currentIndex !== -1) {
             let html = "";
             if (currentIndex !== 0) {
-                html += `<a href="${pages[currentIndex - 1]}">Prev Page: ${pages[currentIndex - 2]}</a>`;
+                html += `<a href="${pages[currentIndex - 1]}">${pages[currentIndex - 2]}</a>`;
             }
             if (currentIndex + 3 < pages.length) {
                 if (currentIndex !== 0) {
                     html += " | ";
                 }
-                html += `<a href="${pages[currentIndex + 3]}">Next Page: ${pages[currentIndex + 2]}</a>`;
+                html += `<a href="${pages[currentIndex + 3]}">${pages[currentIndex + 2]}</a>`;
             }
             bottomNav.innerHTML = html;
         }
