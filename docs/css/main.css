@@ -93,4 +93,5 @@ body {
 /* shrink these containers to the image width */
 .captionImageContainer, .captionImage {
     width: max-content;
+    max-width: 100%;
 }
