@@ -108,7 +108,7 @@ function prepareHTML(str) {
         // replace chars with entities
         p1 = prepareEntities(p1);
         // we're looking for two or more \n or \r or \n\r combinations in a row
-        let pieces = p1.split(/(\r\n){2,}|\n{2,}|\r{2,}/).filter(p => {
+        let pieces = p1.split(/(\r\n\s*){2,}|\n{2,}|\r{2,}/).filter(p => {
             return !!p.trim();
         });
         return "<p>" + pieces.join("</p>\n\r\n\r<p>") + "</p>";
