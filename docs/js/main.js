@@ -24,7 +24,8 @@ const pages = [
     "Day 15 - Rae Lakes over Glen Pass to Vidette Meadows", "day-15-rae-lakes-to-vidette-meadows.html",
     "Day 16 - Over Forester Pass to Wright Creek", "day-16-over-forester-pass-to-wright-creek.html",
     "Day 17 - Wright Creek to Guitar Lake", "day-17-wright-creek-to-guitar-lake.html",
-    "Day 18 - Guitar Lake to Whitney and Down to Whitney Portal", "day-18-guitar-lake-to-whitney-to-whitney-portal.html"
+    "Day 18 - Guitar Lake to Whitney and Down to Whitney Portal", "day-18-guitar-lake-to-whitney-to-whitney-portal.html",
+    "Epilogue", "epilogue.html"
 ];
 
 function getPageIndex() {
