@@ -1,0 +1,8 @@
+{% macro captionImage(url, caption='') %}
+<table class="captionImage">
+    {% if caption %}
+        <caption align="bottom">{{caption}}</caption>
+    {% endif %}
+    <tr><td><img src={{url}}></td></tr>
+</table>
+{% endmacro %}
