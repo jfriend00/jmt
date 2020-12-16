@@ -126,8 +126,9 @@ async function run() {
     let errors = 0;
     let env;
     for (let file of inputFiles) {
+        let base;
         try {
-            let base = path.basename(file);
+            base = path.basename(file);
             let dir = file.slice(0, -(base.length + 1));
             // configure nunjucks so that relative paths in templates work properly
             // use a cached environment so we aren't always making a new one
@@ -154,7 +155,7 @@ async function run() {
             ++cntr;
         } catch (e) {
             ++errors;
-            console.log("\n", e, "\n");
+            console.log(`\nError processing ${base}\n`, e, "\n");
         }
     }
     if (!errors) {
