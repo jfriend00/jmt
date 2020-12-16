@@ -92,3 +92,12 @@ body {
 .captionImage caption {
     font-style: italic;
 }
+
+.captionImage td {
+    padding: 0;
+}
+
+table.captionImage {
+    border-spacing: 0;
+    margin-bottom: 1.5em;
+}
