@@ -22,3 +22,15 @@
 <img class="photo" src="images/{{url}}">
 {% endif %}
 {% endmacro %}
+
+{# video with a caption #}
+{% macro video(embedHTML, caption='') %}
+{% if caption %}
+<table class="captionImage">
+    <caption align="bottom">{{caption}}</caption>
+    <tr><td>{{embedHTML | safe}}</td></tr>
+</table>
+{% else %}
+{{embedHTML | safe}}
+{% endif %}
+{% endmacro %}
