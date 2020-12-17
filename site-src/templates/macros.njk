@@ -26,10 +26,10 @@
 {# video with a caption #}
 {% macro video(embedHTML, caption='') %}
 {% if caption %}
-<table class="captionImage">
-    <caption align="bottom">{{caption}}</caption>
-    <tr><td>{{embedHTML | safe}}</td></tr>
-</table>
+<div class="captionVideo">
+    <div class="videoContainer">{{embedHTML | safe}}</div>
+    <div class="caption center">{{caption}}</div>
+</div>
 {% else %}
 {{embedHTML | safe}}
 {% endif %}

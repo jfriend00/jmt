@@ -7,6 +7,7 @@ img.photo, .captionImage img {
   height: auto;
 }
 
+
 img.right {
     float: right;
     margin-left: 1em;
@@ -94,12 +95,16 @@ body {
     max-width: 100%;
 }
 
-.captionImage caption {
+.captionImage caption, .caption {
     font-style: italic;
 }
 
 .captionImage td {
     padding: 0;
+}
+
+.captionVideo .caption {
+    margin-top: 4px;
 }
 
 table.captionImage {
@@ -116,4 +121,19 @@ table.captionImage {
     text-align: left;
     border-collapse: collapse;
     padding: 0.7em;
+}
+
+/* Make youtube embedded video responsive */
+.embed-wrapper {
+  overflow: hidden;
+  padding-top: 56.25%;
+  position: relative;
+}
+.embed-wrapper iframe {
+   border: 0;
+   height: 100%;
+   left: 0;
+   position: absolute;
+   top: 0;
+   width: 100%;
 }
