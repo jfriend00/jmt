@@ -161,3 +161,9 @@ body {
 .captionVideo .caption {
     margin-top: 0.5rem;
 }
+
+/* captions initially not visible to prevent pre-display before layout is done
+   Some js will make them visible when the image finishes loading */
+.captionImage figCaption {
+    display: none;
+}
