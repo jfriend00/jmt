@@ -1,0 +1,11 @@
+Issues:
+
+If header wraps and gets taller than expected, then top margin on main content is not large enough and some the top of the page is obscured.
+
+Header is wrapping on Mobile - possible fix to set padding based on vw units or make font breaks for smaller screens.
+
+Implement hamburger navigation
+
+Put navigation into templates instead of via client-side Javascript
+
+Fix pre-display of captions
