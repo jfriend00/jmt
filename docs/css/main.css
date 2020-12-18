@@ -51,6 +51,7 @@ img.right {
   overflow: hidden;
   background-color: #AAA;
   align-items: baseline;
+  z-index: 1;                 /* keep embeded youtube from overlapping */
 }
 .header .container {
     display: flex;
