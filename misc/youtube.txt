@@ -1,0 +1,4 @@
+fs=1                // enable full screen controls
+loop=0              // don't loop
+modestbranding=1    // limit youtube branding
+rel=0               // don't show related videos at end of playback
