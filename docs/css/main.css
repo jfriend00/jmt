@@ -78,9 +78,10 @@ body {
     text-align: right;
 }
 
-.header h2 {
-    display: inline;
+/* This is the default for non-small screens */
+.header .title {
     font-size: 26px;
+    font-weight: bold;
 }
 
 #menu {
