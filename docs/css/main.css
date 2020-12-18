@@ -26,8 +26,18 @@ img.right {
 }
 
 .content {
-    max-width: 50em;
+    max-width: 800px;
     padding-top: 2.5em;
+}
+
+.content p {
+    font-size: 14pt;
+    line-height: 1.4;
+}
+
+.captionImage {
+    font-size: 13pt;
+    line-height: 1.3;
 }
 
 .container {
