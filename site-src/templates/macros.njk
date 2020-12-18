@@ -3,13 +3,13 @@
 {% macro photo(url, caption='') %}
 {% if caption %}
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos{{url}}">
+    <img class="photo" src="https://photos.smugmug.com/photos{{url}}" onload="captionLoaded(this)">
     <figcaption>
         {{caption}}
     </figcaption>
 </figure>
 {% else %}
-<img class="photo" src="https://photos.smugmug.com/photos{{url}}">
+<img class="photo" src="https://photos.smugmug.com/photos{{url}}" onload="captionLoaded(this)">
 {% endif %}
 {% endmacro %}
 
@@ -17,13 +17,13 @@
 {% macro image(url, caption='') %}
 {% if caption %}
 <figure class="captionImage">
-    <img class="photo" src="images/{{url}}">
+    <img class="photo" src="images/{{url}}" onload="captionLoaded(this)">
     <figcaption>
         {{caption}}
     </figcaption>
 </figure>
 {% else %}
-<img class="photo" src="images/{{url}}">
+<img class="photo" src="images/{{url}}" onload="captionLoaded(this)">
 {% endif %}
 {% endmacro %}
 
