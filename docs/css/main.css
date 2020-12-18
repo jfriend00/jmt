@@ -30,7 +30,7 @@ img.right {
     padding-top: 2.5em;
 }
 
-.content p {
+.content p, table {
     font-size: 14pt;
     line-height: 1.4;
 }
