@@ -9,6 +9,14 @@
   <link rel="shortcut icon" type="image/png" sizes="32x32" href="images/mountain-32x32.png">
   <link rel="shortcut icon" type="image/png" sizes="64x64" href="images/mountain-64x64.png">
   <title>Hiking the JMT</title>
+  <script src="js/init.js"></script>
+  <noscript>
+      <style>
+      .captionImage figCaption {
+          display: table;
+      }
+      </style>
+  </noscript>
 </head>
 <body>
     <!--
@@ -49,7 +57,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="images/day-1-map.png">
+    <img class="photo" src="images/day-1-map.png" onload="captionLoaded(this)">
     <figcaption>
         5.4 mi, 1000&#39; down, 600&#39; up, camp at 6640&#39;
     </figcaption>
@@ -59,7 +67,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="images/day-1-earth.png">
+    <img class="photo" src="images/day-1-earth.png" onload="captionLoaded(this)">
     <figcaption>
         Starting at Glacier Point, down to Illilouette River, then up along the Panorama Trail with its beautiful views across to Half Dome and Vernal and Nevada Falls, then turn right towards where we&#39;re allowed to camp our first night
     </figcaption>
@@ -74,7 +82,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-qvWmvbt/0/dab15c15/L/i-qvWmvbt-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-qvWmvbt/0/dab15c15/L/i-qvWmvbt-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Passing some time and hiking to the Vernal Fall Bridge.  Note the mileage to Mount Whitney.
     </figcaption>
@@ -84,7 +92,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-r2vXfz8/0/a34139bd/L/i-r2vXfz8-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-r2vXfz8/0/a34139bd/L/i-r2vXfz8-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Glacier Point.  Pete and Corey in front of Half Dome with their gear.
     </figcaption>
@@ -94,7 +102,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-MshtpSW/0/6724332e/L/i-MshtpSW-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-MshtpSW/0/6724332e/L/i-MshtpSW-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Half Dome and Nevada Falls from Glacier Point.  We’re studying this view and trying to figure out where we’re going to be hiking.  We know we’re headed across the river right above Nevada Falls (middle right, just to the right of the foreground tree).  Then, we go behind Liberty Cap and behind Half Dome to eventually get to Tuolumne Meadows which is far behind Half Dome from here.
     </figcaption>
@@ -104,7 +112,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-z9pgFcs/0/f162b129/L/i-z9pgFcs-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-z9pgFcs/0/f162b129/L/i-z9pgFcs-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         About to start our hike.  Corey, Pete, John and Richard.  The front pack I’m carrying contains my camera gear so I can get at it without stopping or removing my main pack, but it won’t be flopping around while hiking.
     </figcaption>
@@ -114,7 +122,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-rLGbTw4/0/e2c828ea/L/i-rLGbTw4-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-rLGbTw4/0/e2c828ea/L/i-rLGbTw4-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Trailhead.  We’ll be on this trail to Nevada Falls and then turn north towards Tuolumne Meadows.
     </figcaption>
@@ -125,13 +133,13 @@
 <p>The Panorama trail immediately starts downhill towards Illilouette Falls.  On our way, we see a ranger hiking out the other way.  I'm fully expecting him to ask to see our permit (such an obvious place to check it), but he just asks us if we all have bear containers and we respond that we do.  As it turns out, that was the one and only ranger we saw the entire JMT.  At the falls, we get our first water on the trail and relax a bit.</p>
 
 
-<img class="photo" src="https://photos.smugmug.com/photos/i-czqWrmc/0/efa2bb4d/L/i-czqWrmc-L.jpg">
+<img class="photo" src="https://photos.smugmug.com/photos/i-czqWrmc/0/efa2bb4d/L/i-czqWrmc-L.jpg" onload="captionLoaded(this)">
 
 
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-g7CMnsv/0/38db5b11/L/i-g7CMnsv-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-g7CMnsv/0/38db5b11/L/i-g7CMnsv-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Pete and Richard taking a break at the Illilouette River crossing.
     </figcaption>
@@ -144,28 +152,28 @@
 <p>It is awhile on the descent before it's flat enough to start looking for a camp site.  There are some level areas, but this looks like a really healthy forest with so much fallen debris from the forest that it's hard to find places to put tents.  After about 30 minutes of searching we find a place that we think has enough cleared areas for four tents and by 7:00, we're setting up our tents (except Pete who decides to sleep under the stars) and cooking dinner.  I have my red beans &amp; rice with chocolate squares for dessert.  Tastes pretty darn good.  During dinner, some deer come within 10' of us as they seem interested in a certain type of bush near our campsite.  It's as if we're in their dining room, but they don't seem bothered by us at all.</p>
 
 
-<img class="photo" src="https://photos.smugmug.com/photos/i-zv8rs9f/0/867a2f3e/L/i-zv8rs9f-L.jpg">
+<img class="photo" src="https://photos.smugmug.com/photos/i-zv8rs9f/0/867a2f3e/L/i-zv8rs9f-L.jpg" onload="captionLoaded(this)">
 
 
 
 
-<img class="photo" src="https://photos.smugmug.com/photos/i-cPwg3S3/0/b6e36958/L/i-cPwg3S3-L.jpg">
+<img class="photo" src="https://photos.smugmug.com/photos/i-cPwg3S3/0/b6e36958/L/i-cPwg3S3-L.jpg" onload="captionLoaded(this)">
 
 
 
 
-<img class="photo" src="https://photos.smugmug.com/photos/i-KwPmTxc/0/328b29eb/L/i-KwPmTxc-L.jpg">
+<img class="photo" src="https://photos.smugmug.com/photos/i-KwPmTxc/0/328b29eb/L/i-KwPmTxc-L.jpg" onload="captionLoaded(this)">
 
 
 
 
-<img class="photo" src="https://photos.smugmug.com/photos/i-CMMGQKv/0/75f8bf48/L/i-CMMGQKv-L.jpg">
+<img class="photo" src="https://photos.smugmug.com/photos/i-CMMGQKv/0/75f8bf48/L/i-CMMGQKv-L.jpg" onload="captionLoaded(this)">
 
 
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-FN7PdgH/0/4310e09e/L/i-FN7PdgH-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-FN7PdgH/0/4310e09e/L/i-FN7PdgH-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Our first camp
     </figcaption>

@@ -9,6 +9,14 @@
   <link rel="shortcut icon" type="image/png" sizes="32x32" href="images/mountain-32x32.png">
   <link rel="shortcut icon" type="image/png" sizes="64x64" href="images/mountain-64x64.png">
   <title>Hiking the JMT</title>
+  <script src="js/init.js"></script>
+  <noscript>
+      <style>
+      .captionImage figCaption {
+          display: table;
+      }
+      </style>
+  </noscript>
 </head>
 <body>
     <!--
@@ -49,7 +57,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="images/day-13-map.png">
+    <img class="photo" src="images/day-13-map.png" onload="captionLoaded(this)">
     <figcaption>
         12mi - 3100&#39; climb, 1900&#39; descent - camp at 10,200&#39;
     </figcaption>
@@ -59,7 +67,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="images/day-13-earth.png">
+    <img class="photo" src="images/day-13-earth.png" onload="captionLoaded(this)">
     <figcaption>
         Up the (very difficult) Golden Staircase, past Pallisade Lake, over Mather Pass and down all the way to Kings River
     </figcaption>
@@ -70,7 +78,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-rFXK9fh/0/ea2506fe/L/i-rFXK9fh-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-rFXK9fh/0/ea2506fe/L/i-rFXK9fh-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         In my rush to get going this morning, I forgot to take a picture of the campsite while things were still set up, but this is the little clear spot where my tent was
     </figcaption>
@@ -83,7 +91,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-rWVzMCH/0/59a771ef/L/i-rWVzMCH-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-rWVzMCH/0/59a771ef/L/i-rWVzMCH-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         The beginnings of the golden staircase
     </figcaption>
@@ -93,7 +101,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-BgNpL8M/0/b0a8c8fa/L/i-BgNpL8M-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-BgNpL8M/0/b0a8c8fa/L/i-BgNpL8M-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Palisade Creek flowing down the golden staircase
     </figcaption>
@@ -103,7 +111,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-FtJ2W3K/0/5c38f3b0/L/i-FtJ2W3K-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-FtJ2W3K/0/5c38f3b0/L/i-FtJ2W3K-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Looking back, this is where I came from.  The lowest point you can see in the distance is the Middle Fork of the Kings River that I crossed yesterday
     </figcaption>
@@ -113,7 +121,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-F93sZkP/0/e7337b4f/L/i-F93sZkP-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-F93sZkP/0/e7337b4f/L/i-F93sZkP-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Somewhere up there is Mather Pass
     </figcaption>
@@ -123,7 +131,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-shwqxKN/0/985fa0a4/L/i-shwqxKN-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-shwqxKN/0/985fa0a4/L/i-shwqxKN-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Mather Pass is off to the right of those big peaks in the distance.  There&#39;s not much of a trail here.
     </figcaption>
@@ -133,7 +141,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-hJfbXfB/0/29965c75/L/i-hJfbXfB-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-hJfbXfB/0/29965c75/L/i-hJfbXfB-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Getting further up the staircase.  Mather Pass is around to the right of those peaks
     </figcaption>
@@ -146,7 +154,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-k39cDRR/0/d499dbb8/L/i-k39cDRR-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-k39cDRR/0/d499dbb8/L/i-k39cDRR-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Palisade Lakes.  I take a good long rest, food and water break here.
     </figcaption>
@@ -156,7 +164,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-94fqZm3/0/d33107b9/L/i-94fqZm3-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-94fqZm3/0/d33107b9/L/i-94fqZm3-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Up above Palisade Lakes and here&#39;s where I encounter the CCC crew
     </figcaption>
@@ -166,7 +174,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-9Xw9hsk/0/64393af8/L/i-9Xw9hsk-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-9Xw9hsk/0/64393af8/L/i-9Xw9hsk-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Last view behind of Palisade Lakes
     </figcaption>
@@ -179,7 +187,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-jGdG5Vk/0/d50e8e62/L/i-jGdG5Vk-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-jGdG5Vk/0/d50e8e62/L/i-jGdG5Vk-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         You get to about here on these passes and it just seems like there&#39;s always another bend or another rise.
     </figcaption>
@@ -188,18 +196,18 @@
 
 
 
-<img class="photo" src="https://photos.smugmug.com/photos/i-KkGtjKs/0/9d5c3a2f/L/i-KkGtjKs-L.jpg">
+<img class="photo" src="https://photos.smugmug.com/photos/i-KkGtjKs/0/9d5c3a2f/L/i-KkGtjKs-L.jpg" onload="captionLoaded(this)">
 
 
 
 
-<img class="photo" src="https://photos.smugmug.com/photos/i-DgrbsJm/0/962e79b5/L/i-DgrbsJm-L.jpg">
+<img class="photo" src="https://photos.smugmug.com/photos/i-DgrbsJm/0/962e79b5/L/i-DgrbsJm-L.jpg" onload="captionLoaded(this)">
 
 
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-BhrHZv7/0/74b1fa4a/L/i-BhrHZv7-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-BhrHZv7/0/74b1fa4a/L/i-BhrHZv7-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Flowers at the last water stop before the pass
     </figcaption>
@@ -209,7 +217,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-5f6r5w8/0/cc1244d7/L/i-5f6r5w8-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-5f6r5w8/0/cc1244d7/L/i-5f6r5w8-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Lotss of big steps and boulders to deal with.  The trail is steep and I&#39;m on the switchbacks now
     </figcaption>
@@ -224,7 +232,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-znDgCnp/0/d5e418de/L/i-znDgCnp-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-znDgCnp/0/d5e418de/L/i-znDgCnp-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Made it to the top of Mather Pass.  This is looking back at where I came from
     </figcaption>
@@ -233,13 +241,13 @@
 
 
 
-<img class="photo" src="https://photos.smugmug.com/photos/i-P9z8cHm/0/edb7df2b/L/i-P9z8cHm-L.jpg">
+<img class="photo" src="https://photos.smugmug.com/photos/i-P9z8cHm/0/edb7df2b/L/i-P9z8cHm-L.jpg" onload="captionLoaded(this)">
 
 
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-7N598mN/0/e6f6df97/L/i-7N598mN-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-7N598mN/0/e6f6df97/L/i-7N598mN-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         I made it!
     </figcaption>
@@ -249,7 +257,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-LhTTDtC/0/d53d30cd/L/i-LhTTDtC-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-LhTTDtC/0/d53d30cd/L/i-LhTTDtC-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Looking south from Mather Pass (where I&#39;m going).  If I&#39;m looking a little beat up, that&#39;s because it&#39;s how I feel
     </figcaption>
@@ -259,7 +267,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-vRNKprP/0/6f8577d9/L/i-vRNKprP-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-vRNKprP/0/6f8577d9/L/i-vRNKprP-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         The southern side of the pass is called the Upper Basin - fairly clearly carved out by glaciers
     </figcaption>

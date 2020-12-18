@@ -9,6 +9,14 @@
   <link rel="shortcut icon" type="image/png" sizes="32x32" href="images/mountain-32x32.png">
   <link rel="shortcut icon" type="image/png" sizes="64x64" href="images/mountain-64x64.png">
   <title>Hiking the JMT</title>
+  <script src="js/init.js"></script>
+  <noscript>
+      <style>
+      .captionImage figCaption {
+          display: table;
+      }
+      </style>
+  </noscript>
 </head>
 <body>
     <!--
@@ -49,7 +57,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-JX4T2Ms/0/195e7062/L/i-JX4T2Ms-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-JX4T2Ms/0/195e7062/L/i-JX4T2Ms-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         A practice hike with my actual pack, hiking poles, camera equipment, hydration tube and 35 lbs of barbell weight in the pack
     </figcaption>

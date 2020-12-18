@@ -9,6 +9,14 @@
   <link rel="shortcut icon" type="image/png" sizes="32x32" href="images/mountain-32x32.png">
   <link rel="shortcut icon" type="image/png" sizes="64x64" href="images/mountain-64x64.png">
   <title>Hiking the JMT</title>
+  <script src="js/init.js"></script>
+  <noscript>
+      <style>
+      .captionImage figCaption {
+          display: table;
+      }
+      </style>
+  </noscript>
 </head>
 <body>
     <!--
@@ -49,7 +57,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="images/day-2-map.png">
+    <img class="photo" src="images/day-2-map.png" onload="captionLoaded(this)">
     <figcaption>
         12.5mi, 800&#39; down, 3500&#39; up, camp at 9300&#39;
     </figcaption>
@@ -59,7 +67,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="images/day-2-earth.png">
+    <img class="photo" src="images/day-2-earth.png" onload="captionLoaded(this)">
     <figcaption>
         From camp, down to the Merced River at the top of Nevada Falls and then we climb the rest of the day, first passing the trail to Half Dome.  Much of the day we&#39;re following a ridge that lets us see great scenery off to the right over a big canyon to many other peaks
     </figcaption>
@@ -71,7 +79,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-b9v8wBk/0/e4670f25/L/i-b9v8wBk-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-b9v8wBk/0/e4670f25/L/i-b9v8wBk-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Pete sleeping under the stars
     </figcaption>
@@ -81,7 +89,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-SG6N5n7/0/4058f327/L/i-SG6N5n7-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-SG6N5n7/0/4058f327/L/i-SG6N5n7-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Corey reading his book
     </figcaption>
@@ -90,13 +98,13 @@
 
 
 
-<img class="photo" src="https://photos.smugmug.com/photos/i-rZv675b/0/f89a6c7a/L/i-rZv675b-L.jpg">
+<img class="photo" src="https://photos.smugmug.com/photos/i-rZv675b/0/f89a6c7a/L/i-rZv675b-L.jpg" onload="captionLoaded(this)">
 
 
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-nTX2V97/0/6370d4f5/L/i-nTX2V97-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-nTX2V97/0/6370d4f5/L/i-nTX2V97-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         First trail breakfast
     </figcaption>
@@ -108,7 +116,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-q3XbZSP/0/6df45226/L/i-q3XbZSP-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-q3XbZSP/0/6df45226/L/i-q3XbZSP-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Heading back to the Panorama Trail in a previously burned area
     </figcaption>
@@ -120,7 +128,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-XPH8DdW/0/ffeea6c5/L/i-XPH8DdW-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-XPH8DdW/0/ffeea6c5/L/i-XPH8DdW-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Water rushing over Nevada Falls
     </figcaption>
@@ -130,7 +138,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-R5Wp98d/0/d950137c/L/i-R5Wp98d-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-R5Wp98d/0/d950137c/L/i-R5Wp98d-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Calm water above Nevada Falls where we clean up and fill up
     </figcaption>
@@ -140,7 +148,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-qT9xb6v/0/2ebbfee6/L/i-qT9xb6v-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-qT9xb6v/0/2ebbfee6/L/i-qT9xb6v-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Now on the JMT, headed for Tuolumne Meadows
     </figcaption>
@@ -154,13 +162,13 @@ After we pass the Half Dome Trail junction, the trail goes from crowded (tons of
 <p>On the way to the switchbacks, we start to get our first views of the high country as there's a big valley off to the east and jagged peaks on the other side and I fall behind the others as I stop to take pictures of our first views of the high country (a common occurrence).  At the base of the major switchbacks that we've been waiting for is a major stream and we rest and fill up.  As we start up the switchbacks, we decide we're going all the way to Sunrise.  The switchbacks are difficult.  It's been a long, hot day so far and this is definitely the steepest and highest we've seen yet.  We try talking to pass the time, but soon we're too tired to keep talking and the focus just goes into the hiking routine.</p>
 
 
-<img class="photo" src="https://photos.smugmug.com/photos/i-zBBJHW6/0/1b803f9b/L/i-zBBJHW6-L.jpg">
+<img class="photo" src="https://photos.smugmug.com/photos/i-zBBJHW6/0/1b803f9b/L/i-zBBJHW6-L.jpg" onload="captionLoaded(this)">
 
 
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-V5XH8Nr/0/389f2b3c/L/i-V5XH8Nr-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-V5XH8Nr/0/389f2b3c/L/i-V5XH8Nr-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Spectacular views of Mount Clark as we hike along a ridge
     </figcaption>
@@ -170,7 +178,7 @@ After we pass the Half Dome Trail junction, the trail goes from crowded (tons of
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-STqgXvX/0/503d7af1/L/i-STqgXvX-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-STqgXvX/0/503d7af1/L/i-STqgXvX-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         The trail is pretty relentlessly up this day
     </figcaption>
@@ -180,7 +188,7 @@ After we pass the Half Dome Trail junction, the trail goes from crowded (tons of
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-49Whwdq/0/b6375089/L/i-49Whwdq-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-49Whwdq/0/b6375089/L/i-49Whwdq-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         They’re probably waiting for me (the guy who’s always stopping to take pictures)
     </figcaption>
@@ -189,13 +197,13 @@ After we pass the Half Dome Trail junction, the trail goes from crowded (tons of
 
 
 
-<img class="photo" src="https://photos.smugmug.com/photos/i-9SmBB2w/0/0b8b67ab/L/i-9SmBB2w-L.jpg">
+<img class="photo" src="https://photos.smugmug.com/photos/i-9SmBB2w/0/0b8b67ab/L/i-9SmBB2w-L.jpg" onload="captionLoaded(this)">
 
 
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-BGDMfkt/0/acea6242/L/i-BGDMfkt-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-BGDMfkt/0/acea6242/L/i-BGDMfkt-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Lots of different views this day
     </figcaption>
@@ -210,18 +218,18 @@ After we pass the Half Dome Trail junction, the trail goes from crowded (tons of
 <p>We were all famished for dinner, food never tasted so good.  I called Steph briefly on the satellite phone just to say hi and see how it worked and that was fun.  She's still in Virginia with Sara at a soccer tournament and they are doing well in their tournament so far.  Steph would love the views here.</p>
 
 
-<img class="photo" src="https://photos.smugmug.com/photos/i-PL9V2pV/0/95b4778e/L/i-PL9V2pV-L.jpg">
+<img class="photo" src="https://photos.smugmug.com/photos/i-PL9V2pV/0/95b4778e/L/i-PL9V2pV-L.jpg" onload="captionLoaded(this)">
 
 
 
 
-<img class="photo" src="https://photos.smugmug.com/photos/i-kJdBbqZ/0/1c98562a/L/i-kJdBbqZ-L.jpg">
+<img class="photo" src="https://photos.smugmug.com/photos/i-kJdBbqZ/0/1c98562a/L/i-kJdBbqZ-L.jpg" onload="captionLoaded(this)">
 
 
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-rwk52gS/0/0b3492f0/L/i-rwk52gS-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-rwk52gS/0/0b3492f0/L/i-rwk52gS-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Our &quot;kitchen&quot; with spectacular views
     </figcaption>
@@ -230,13 +238,13 @@ After we pass the Half Dome Trail junction, the trail goes from crowded (tons of
 
 
 
-<img class="photo" src="https://photos.smugmug.com/photos/i-52BxhK8/0/5ff2a3c4/L/i-52BxhK8-L.jpg">
+<img class="photo" src="https://photos.smugmug.com/photos/i-52BxhK8/0/5ff2a3c4/L/i-52BxhK8-L.jpg" onload="captionLoaded(this)">
 
 
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-96C8QCq/0/d48330d3/L/i-96C8QCq-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-96C8QCq/0/d48330d3/L/i-96C8QCq-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Sunset with the Yosemite high country in the background
     </figcaption>
@@ -245,13 +253,13 @@ After we pass the Half Dome Trail junction, the trail goes from crowded (tons of
 
 
 
-<img class="photo" src="https://photos.smugmug.com/photos/i-VQqwLhd/0/321c8e67/L/i-VQqwLhd-L.jpg">
+<img class="photo" src="https://photos.smugmug.com/photos/i-VQqwLhd/0/321c8e67/L/i-VQqwLhd-L.jpg" onload="captionLoaded(this)">
 
 
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-8N5vHLq/0/b15ff900/L/i-8N5vHLq-L.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-8N5vHLq/0/b15ff900/L/i-8N5vHLq-L.jpg" onload="captionLoaded(this)">
     <figcaption>
         Pete and Corey&#39;s &quot;room with a view&quot;
     </figcaption>

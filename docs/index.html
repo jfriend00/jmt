@@ -9,6 +9,14 @@
   <link rel="shortcut icon" type="image/png" sizes="32x32" href="images/mountain-32x32.png">
   <link rel="shortcut icon" type="image/png" sizes="64x64" href="images/mountain-64x64.png">
   <title>Hiking the JMT</title>
+  <script src="js/init.js"></script>
+  <noscript>
+      <style>
+      .captionImage figCaption {
+          display: table;
+      }
+      </style>
+  </noscript>
 </head>
 <body>
     <!--
@@ -65,7 +73,7 @@
 
 
 
-<img class="photo" src="images/jmt-profile.gif">
+<img class="photo" src="images/jmt-profile.gif" onload="captionLoaded(this)">
 
 
 
@@ -74,7 +82,7 @@
 
 
 <figure class="captionImage">
-    <img class="photo" src="https://photos.smugmug.com/photos/i-XwC4kcf/0/0819416e/XL/i-XwC4kcf-XL.jpg">
+    <img class="photo" src="https://photos.smugmug.com/photos/i-XwC4kcf/0/0819416e/XL/i-XwC4kcf-XL.jpg" onload="captionLoaded(this)">
     <figcaption>
         The complete JMT paper map set laid out on the floor connecting the maps to each other.  Yosemite is at the top, Whitney at the bottom.  I chose not to rely on electronics for anything other than camera and UV purifier so I used paper maps in 2013.  Now, I would probably use GPS and electronic maps perhaps with paper backup.
     </figcaption>
