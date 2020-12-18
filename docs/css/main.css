@@ -10,8 +10,8 @@ img.photo, .captionImage img {
 
 img.right {
     float: right;
-    margin-left: 1em;
-    margin-bottom: 0.25em;
+    margin-left: 1rem;
+    margin-bottom: 0.25rem;
 }
 
 .center {
@@ -21,16 +21,16 @@ img.right {
 .centerBox {
     margin-left: auto;
     margin-right: auto;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 
 .content {
     max-width: 800px;
-    padding-top: 2.5em;
+    padding-top: 2.5rem;
 }
 
-.content p, table, li {
+body {
     font-size: 14pt;
     line-height: 1.4;
 }
@@ -41,22 +41,22 @@ img.right {
 }
 
 .container {
-  max-width: 50em;
+  max-width: 800px;
   margin: 0 auto;
 }
 
 .subtitle {
-    margin-top: .1em;
+    margin-top: .1rem;
 }
 
 .withSubtitle {
-    margin-bottom: .1em;
+    margin-bottom: .1rem;
 }
 
 .header {
   position: fixed;
   top: 0;
-  padding: 0.25em 0.5em;
+  padding: 0.25em 0.5rem;
   width: 100%;
   overflow: hidden;
   background-color: #AAA;
@@ -89,7 +89,7 @@ img.right {
 }
 
 #menu {
-    margin-right: 1em;
+    margin-right: 1rem;
 }
 
 .plain {
@@ -128,7 +128,7 @@ body {
 
 table.captionImage {
     border-spacing: 0;
-    margin-bottom: 1.5em;
+    margin-bottom: 1.5rem;
 }
 
 .displayTable {
@@ -139,7 +139,7 @@ table.captionImage {
     border: 1px solid black;
     text-align: left;
     border-collapse: collapse;
-    padding: 0.7em;
+    padding: 0.7rem;
 }
 
 /* Make youtube embedded video responsive */
