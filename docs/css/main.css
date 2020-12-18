@@ -62,6 +62,7 @@ img.right {
 
 .header .left {
     display: flex;
+    vertical-align: text-bottom;
 }
 
 .header .right {
