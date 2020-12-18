@@ -7,5 +7,3 @@ Header is wrapping on Mobile - possible fix to set padding based on vw units or 
 Implement hamburger navigation
 
 Put navigation into templates instead of via client-side Javascript
-
-Fix pre-display of captions
