@@ -23,14 +23,23 @@
 {% endif %}
 {% endmacro %}
 
-{# video with a caption #}
-{% macro video(embedHTML, caption='') %}
+{# raw youtube video embed (utility macro for within this file)
+   This has hard-wired youtube embedding parameters for this project
+#}
+{% macro makeYouTubeEmbed(id) %}
+<div class="embed-wrapper"><iframe width="" height="" src="https://www.youtube.com/embed/{{id | safe}}?fs=1&rel=0&modestbranding=1&loop=0&controls=1&autoplay=0&fs=0&showinfo=0&color=red&vq=720p" frameborder="0" allowfullscreen></iframe></div>
+{% endmacro %}
+
+{# youtube video with a caption #}
+{% macro youtube(id, caption='') %}
 {% if caption %}
 <div class="captionVideo">
-    <div class="videoContainer">{{embedHTML | safe}}</div>
+    <div class="videoContainer">
+        {{makeYouTubeEmbed(id) | safe}}
+    </div>
     <div class="caption center">{{caption}}</div>
 </div>
 {% else %}
-{{embedHTML | safe}}
+    {{makeYouTubeEmbed(id) | safe}}
 {% endif %}
 {% endmacro %}
