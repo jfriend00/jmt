@@ -70,7 +70,7 @@ img.right {
 }
 
 /* Make header not be sticky if viewport height is less than some amount */
-@media (max-height: 300px) {
+@media (max-height: 400px) {
   .header {position: static;}
 }
 
