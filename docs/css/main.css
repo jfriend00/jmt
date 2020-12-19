@@ -196,6 +196,12 @@ img.right {
         font-size: 11pt;
         line-height: 1.1;
     }
+    h2 {
+        font-size: 1.3em;
+    }
+    h3 {
+        font-size: 1.15em;
+    }
     .header h2 {
         font-size: 24px;
     }
