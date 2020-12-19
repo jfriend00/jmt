@@ -185,3 +185,18 @@ img.right {
 .captionImage figCaption {
     display: none;
 }
+
+/* switch to a little smaller base font for smaller screens */
+@media (max-width: 600px) {
+    body {
+        font-size: 12pt;
+        line-height: 1.2;
+    }
+    .captionImage, .captionVideo {
+        font-size: 11pt;
+        line-height: 1.1;
+    }
+    .header h2 {
+        font-size: 24px;
+    }
+}
