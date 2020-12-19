@@ -1,36 +1,90 @@
 <!DOCTYPE html>
 <html>
 <body>
-<style>
-table.header {
-    width: 100%;
-}
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <base href="/jmt/">
+        
+        <link rel="shortcut icon" type="image/png" sizes="16x16" href="images/mountain-16x16.png">
+        <link rel="shortcut icon" type="image/png" sizes="32x32" href="images/mountain-32x32.png">
+        <link rel="shortcut icon" type="image/png" sizes="64x64" href="images/mountain-64x64.png">
+    </head>
+    <style>
+        /* from main.css */
+        body {
+          margin: 0;
+        }
 
-.header .left {
-    text-align: left;
-    vertical-align: baseline;
-}
+        .plain {
+            text-decoration: none;
+            color: black;
+        }
 
-.header .right {
-    text-align: right;
-    vertical-align: baseline;
-}
+        /* end of from main.css */
 
-.header h2 {
-    display: inline;
-    font-size: 27px;
-}
+        .headerX {
+            position: fixed;
+            top: 0;
+            padding: 0.25rem 0.5rem;
+            width: 100%;
+            overflow: hidden;
+            background-color: #AAA;
+            z-index: 1;                 /* keep embeded youtube from overlapping */
+            box-sizing: border-box;
+        }
 
-.header td {
-    border-bottom: 1px solid #000;
-}
-</style>
+        .headerX .container {
+            display: flex;
+            width: 800px;
+            max-width: 100%;
+            align-items: baseline;
+        }
 
-<table class="header">
-    <tr>
-        <td class="left"><img src="https://jfriend00.github.io/jmt/images/hamburger-17x22-3.png"> <h2>Monopoly<h2></td>
-        <td class="right">This should be right</td>
-    </tr>
+        #navArrows {
+        }
+
+        .headerX h2 {
+            margin: 0;
+            display: flex;
+            font-size: 26px;
+        }
+
+        .headerX .left, .headerX .right {
+            padding: 0;
+            flex-shrink: 0;
+            flex-grow: 0;
+        }
+
+        .headerX .left {
+            margin-right: 1rem;
+        }
+
+        .headerX .right {
+            margin-left: 1rem;
+        }
+
+        .title {
+            flex-wrap: wrap;
+            flex-grow: 2;
+        }
+    </style>
+<body>
+
+<div class="headerX">
+    <div class="container">
+        <div class="left">
+            <img id="menu" src="images/hamburger-17x22-3.png">
+        </div>
+        <div class="title">
+            <a href="" class="plain"><h2>The John Muir Trail Was Simple An Amazing Experience That Cannot Be Repeated</h2></a>
+        </div>
+        <div id="navArrows" class="right">
+           <a href=""><img src="images/left-22.png"></a>
+           <span class="spacer"></span>
+           <a href=""><img src="images/right-22.png"></a>
+       </div>
+    </div>
 </div>
 
 </body>
