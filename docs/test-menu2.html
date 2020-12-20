@@ -21,7 +21,7 @@
 </head>
 <body>
 
-Click me 4: <button id="menuButton" tabindex="0" onclick="return true">☰</button>
+Click me 5: <button id="menuButton" tabindex="0" onclick="return true">☰</button>
 <nav class="menu">
   <ul>
     <li>
@@ -38,16 +38,37 @@ Click me 4: <button id="menuButton" tabindex="0" onclick="return true">☰</butt
 </nav>
 
 <script>
-    const menuButton = document.getElementById("menuButton");
-    menuButton.addEventListener("click", function(e) {
-        const menu = document.querySelector(".menu");
-        let style = window.getComputedStyle(menu);
-        if (style.visibility === "hidden") {
-            menu.style.visibility = "visible";
-        } else {
-            menu.style.visibility = "hidden";
-        }
-    });
+// for logging into a window on devices that you can't easily see
+// the console
+function log(...args) {
+    let logger = document.querySelector("#log");
+    if (!logger) {
+        logger = document.createElement("div");
+        logger.style.margin = "0.5rem";
+        logger.id = "log";
+        document.body.appendChild(logger);
+    }
+    let msg = document.createElement("div");
+    msg.textContent = args.join(" ");
+    logger.appendChild(msg);
+}
+
+const menuButton = document.getElementById("menuButton");
+menuButton.addEventListener("click", function(e) {
+    log("got click");
+    const menu = document.querySelector(".menu");
+    let style = window.getComputedStyle(menu);
+    if (style.visibility === "hidden") {
+        log("making menu visible");
+        menu.style.visibility = "visible";
+    } else {
+        log("making menu hidden");
+        menu.style.visibility = "hidden";
+    }
+    log("got to end");
+    log("-------------");
+});
+
 </script>
 
 </body>
