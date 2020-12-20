@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="shortcut icon" type="image/png" sizes="16x16" href="images/mountain-16x16.png">
     <style>
         .menu {
             visibility: hidden;
@@ -10,11 +11,15 @@
         button:focus + .menu {
             visibility: visible;
         }
+
+        button {
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
-Click me: <a href="#" tabindex="-1">☰</a>
+Click me: <button tabindex="-1">☰</button>
 <nav class="menu">
   <ul>
     <li>
