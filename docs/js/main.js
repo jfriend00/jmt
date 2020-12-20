@@ -46,6 +46,7 @@ function getPageIndex() {
 }
 
 function configureBottomLinks(currentIndex) {
+    return;
     let bottomNav = document.getElementById("bottom-nav");
     if (bottomNav) {
         if (currentIndex !== -1) {

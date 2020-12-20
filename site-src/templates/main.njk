@@ -33,7 +33,18 @@
     <div id="content" class="content centerBox">
         {% block content %}
         {% endblock %}
-        <p id="bottom-nav" class="center"></p>
+        <p id="bottom-nav" class="center">
+        {% if prevUrl %}
+           <a href="{{prevUrl}}">{{prevName}}</a>
+        {% endif %}
+        {% if prevUrl and nextUrl %}
+         |
+        {% endif %}
+        {% if nextUrl %}
+           <a href="{{nextUrl}}">{{nextName}}</a>
+        {% endif %}
+        </p>
+
     </div>
     <script src="js/main.js"></script>
 </body>
