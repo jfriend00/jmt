@@ -208,8 +208,17 @@ img.right {
     position: relative;
 }
 
-.menu:hover .popup {
-    /*display: block;*/
+/*
+.burger:focus .popup, .burger img:focus .popup {
+    display: block;
+}*/
+
+.burger:hover .popup, .burger img:hover .popup {
+    display: block;
+}
+
+.menu:focus .popup, .menu a:focus + .popup {
+    display: block;
 }
 
 .popup {
@@ -220,19 +229,39 @@ img.right {
     max-height: 75vh;    /* add scrollbar if needed */
     border: 1px solid black;
     z-index: 10;
-/*    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+    /* border-radius: 4px; */
+    box-shadow: 0 0.35em 0.45em rgba(0,0,0,0.5);
     background-color: white;
-    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
-.popup a {
-  text-decoration: none;
+.popup-inner {
+    position: relative;
+}
+
+.popup a, .popup a:visited, .popup a:hover, .popup a:active {
+    text-decoration: none;
+    display: block;
+    white-space: nowrap;
+    color: inherit;
 }
 
 .popup ul {
-  display: block;
+    display: block;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: .5rem 0;
 }
 
 .popup li {
-  width: 100%;
+    display: inline-block;
+    width: 100%;
+    color: black;
+    padding: 0 0.5rem;
+}
+
+.popup li:hover {
+    background-color: #DDD;
 }
