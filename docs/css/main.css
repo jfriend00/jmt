@@ -221,7 +221,7 @@ img.right {
     text-decoration: none;
 }
 
-.menu:focus .popup, .menu:active .popup, .menu a:focus + .popup {
+.menu:focus .popup, .menu:active .popup, .menu a:focus + .popup, .popup:focus-within {
     left: 0;
 }
 
