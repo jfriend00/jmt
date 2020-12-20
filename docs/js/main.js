@@ -46,7 +46,7 @@ function configureMenuClick() {
     const burger = document.querySelector("#menu .burger");
     let burgerFocusTime = Date.now();
     burger.addEventListener("click", function(e) {
-        log("click")
+        log("click on burger")
         let popup = document.querySelector("#menu .popup");
         let style = window.getComputedStyle(popup);
         if (style.display !== "none" && Date.now() - burgerFocusTime > clickTime) {
@@ -55,14 +55,36 @@ function configureMenuClick() {
         }
     });
     burger.addEventListener("focus", function(e) {
-        log("focus")
+        log("focus on burger")
         burgerFocusTime = Date.now();
     });
     burger.addEventListener("blur", function(e) {
-        log("blur")
+        log("blur on burger")
     });
+
+    // debugging
+    let links = document.querySelectorAll(".popup a");
+    for (let link of links) {
+        link.addEventListener("mousedown", function(e) {
+            log("mousedown on popup a")
+        });
+        link.addEventListener("mouseup", function(e) {
+            log("mouseup on popup a")
+        });
+        link.addEventListener("focus", function(e) {
+            log("focus on popup a")
+        });
+        link.addEventListener("blur", function(e) {
+            log("blur on popup a")
+        });
+        link.addEventListener("click", function(e) {
+            log("click on popup a")
+        });
+
+
+    }
 
 }
 
 configureArrowKeys();
-//configureMenuClick();
+configureMenuClick();
