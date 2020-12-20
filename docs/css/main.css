@@ -217,7 +217,7 @@ img.right {
     display: block;
 }
 
-.menu:focus .popup, .menu a:focus + .popup {
+.menu:focus .popup, .menu:active .popup, .menu a:focus + .popup {
     display: block;
 }
 
