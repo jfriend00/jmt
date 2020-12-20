@@ -30,8 +30,8 @@ img.right {
 }
 
 .centerBox {
-    margin-left: auto;
     margin-right: auto;
+    margin-left: auto;
     padding-left: 0.25rem;
     padding-right: 0.25rem;
 }
@@ -62,7 +62,6 @@ img.right {
   top: 0;
   padding: 0.25em;
   width: 100%;
-  overflow: hidden;
   background-color: #AAA;
   z-index: 1;                 /* keep embeded youtube from overlapping */
   box-sizing: border-box;
@@ -125,6 +124,7 @@ img.right {
 
 .displayTable {
     width: 100%;
+    font-size: 1.35em;
     border: 1px solid black;
 }
 
@@ -195,7 +195,6 @@ img.right {
         font-size: 11pt;
     }
     h2 {
-        font-size: 1.35em;
     }
     h3 {
         font-size: 1.15em;
@@ -203,4 +202,37 @@ img.right {
     .header h2 {
         font-size: 24px;
     }
+}
+
+.menu {
+    position: relative;
+}
+
+.menu:hover .popup {
+    /*display: block;*/
+}
+
+.popup {
+    display: none;
+    position: absolute;
+    top: 22px;
+    left: 0;
+    max-height: 75vh;    /* add scrollbar if needed */
+    border: 1px solid black;
+    z-index: 10;
+/*    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+    background-color: white;
+    overflow: scroll;
+}
+
+.popup a {
+  text-decoration: none;
+}
+
+.popup ul {
+  display: block;
+}
+
+.popup li {
+  width: 100%;
 }

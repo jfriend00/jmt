@@ -17,8 +17,17 @@
 <body>
     <div class="header">
         <div class="container">
-            <div class="left">
-                <img id="menu" src="images/hamburger-17x22-3.png">
+            <div id="menu" class="left menu">
+                <img src="images/hamburger-17x22-3.png">
+                <div class="popup">
+                    <div class="popup-inner">
+                        <ul>
+                          {%- for item in pages %}
+                            <li><a href="{{item.url}}">{{ item.name }}</a></li>
+                          {%- endfor %}
+                        </ul>
+                    </div>
+                </div>
             </div>
             <div class="title">
                 <a href="" class="plain"><h2>The John Muir Trail</h2></a>
