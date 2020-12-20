@@ -6,17 +6,40 @@ const fs = require('fs');
 const path = require('path');
 const mkdirp = require('mkdirp');
 
+// look for extra=somemodule.js
+let extraFile;
+let extraModule = { process: function() {} };
 
-if (process.argv.length < 4) {
+let args = process.argv.slice(2);
+
+for (let [i, arg] of args.entries()) {
+    if (arg.includes("=")) {
+        let pieces = arg.split("=");
+        if (pieces.length === 2 && pieces[0] == "extra") {
+            extraFile = pieces[1];
+            // remove this item from args array
+            args.splice(i, 1);
+        } else {
+            console.log(`Invalid command line argument ${arg}`);
+            process.exit();
+        }
+    }
+}
+
+if (extraFile) {
+    extraModule = require(extraFile);
+}
+
+if (args.length !== 2) {
     console.log(
-        `\nUsage: node precompile inputPattern outputDir
+        `\nUsage: node precompile inputPattern outputDir [extra=file.js]
   Passes data from render.json to each template when rendering
 `);
     process.exit(1);
 }
 
-const inputPattern = process.argv[2];
-const outputDir = path.resolve(process.argv[3]);
+const inputPattern = args[0];
+const outputDir = path.resolve(args[1]);
 const outputDirLocal = outputDir + ".local";
 
 const inputFiles = glob.sync(inputPattern, { absolute: true });
@@ -137,13 +160,19 @@ async function run() {
                 env._dir = dir;
             }
             let outputFile = path.join(outputDir, base);
+            outputFile = replaceExtension(outputFile, "html");
+            let outputBase = path.basename(loutputFile);
             let data = fs.readFileSync(file).toString();
+            renderInput._info = { base, outputDir, outputBase };
+
+            // do any custom processing of each file
+            extraModule.process(file, data, renderInput);
+
             let renderedData = env.renderString(data, renderInput);
 
             // now pre-process the HTML a bit
             renderedData = prepareHTML(renderedData);
 
-            outputFile = replaceExtension(outputFile, "html");
             console.log(`Rendering ${path.resolve(file)} => ${outputFile}`);
             fs.writeFileSync(outputFile, renderedData);
 

@@ -1,2 +1,2 @@
 @echo off
-node src\precompile.js site-src\html\*.njk docs
+node src\precompile.js site-src\html\*.njk docs extra=../tweak.js
