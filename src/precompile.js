@@ -163,10 +163,11 @@ async function run() {
             outputFile = replaceExtension(outputFile, "html");
             let outputBase = path.basename(outputFile);
             let data = fs.readFileSync(file).toString();
-            renderInput._info = { base, outputDir, outputBase };
 
             // make copy of renderInput so changes to it don't stick from one file to the next
             const renderInputCopy = JSON.parse(JSON.stringify(renderInput));
+            renderInputCopy._info = { base, outputDir, outputBase };
+
             // do any custom processing of each file
             extraModule.process(file, data, renderInputCopy);
 
