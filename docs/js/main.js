@@ -4,7 +4,6 @@ function log(...args) {
     let logger = document.querySelector("#log");
     if (!logger) {
         logger = document.createElement("div");
-        logger.style.height = "70vh";
         logger.style.margin = "0.5rem";
         logger.id = "log";
         document.body.appendChild(logger);
@@ -42,11 +41,12 @@ function configureMenuClick() {
     // it will already be visible when the initial click addEventListener
     // comes through.  So, we have make sure the click was some period of
     // time after the focus event before we process it
+    const debug = false;
     const clickTime = 300;
     const burger = document.querySelector("#menu .burger");
     let burgerFocusTime = Date.now();
     burger.addEventListener("click", function(e) {
-        log("click on burger")
+        if (debug) log("click on burger")
         let popup = document.querySelector("#menu .popup");
         let style = window.getComputedStyle(popup);
         if (style.display !== "none" && Date.now() - burgerFocusTime > clickTime) {
@@ -55,35 +55,35 @@ function configureMenuClick() {
         }
     });
     burger.addEventListener("focus", function(e) {
-        log("focus on burger")
+        if (debug) log("focus on burger")
         burgerFocusTime = Date.now();
     });
     burger.addEventListener("blur", function(e) {
-        log("blur on burger")
+        if (debug) log("blur on burger")
     });
 
+
     // debugging
-    let links = document.querySelectorAll(".popup a");
-    for (let link of links) {
-        link.addEventListener("mousedown", function(e) {
-            log("mousedown on popup a")
-        });
-        link.addEventListener("mouseup", function(e) {
-            log("mouseup on popup a")
-        });
-        link.addEventListener("focus", function(e) {
-            log("focus on popup a")
-        });
-        link.addEventListener("blur", function(e) {
-            log("blur on popup a")
-        });
-        link.addEventListener("click", function(e) {
-            log("click on popup a")
-        });
-
-
+    if (debug) {
+        let links = document.querySelectorAll(".popup a");
+        for (let link of links) {
+            link.addEventListener("mousedown", function(e) {
+                log("mousedown on popup a")
+            });
+            link.addEventListener("mouseup", function(e) {
+                log("mouseup on popup a")
+            });
+            link.addEventListener("focus", function(e) {
+                log("focus on popup a")
+            });
+            link.addEventListener("blur", function(e) {
+                log("blur on popup a")
+            });
+            link.addEventListener("click", function(e) {
+                log("click on popup a")
+            });
+        }
     }
-
 }
 
 configureArrowKeys();
