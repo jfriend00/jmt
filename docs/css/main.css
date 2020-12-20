@@ -228,7 +228,7 @@ img.right {
 .popup {
     position: absolute;
     top: 22px;
-    left: -9999;
+    left: -9999px;
     max-height: 85vh;    /* add scrollbar if needed */
     max-width: 90vh;
     border: 1px solid black;
