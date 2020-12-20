@@ -222,14 +222,13 @@ img.right {
 }
 
 .menu:focus .popup, .menu:active .popup, .menu a:focus + .popup {
-    display: block;
+    left: 0;
 }
 
 .popup {
-    display: none;
     position: absolute;
     top: 22px;
-    left: 0;
+    left: -9999;
     max-height: 85vh;    /* add scrollbar if needed */
     max-width: 90vh;
     border: 1px solid black;
