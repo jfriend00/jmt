@@ -165,10 +165,12 @@ async function run() {
             let data = fs.readFileSync(file).toString();
             renderInput._info = { base, outputDir, outputBase };
 
+            // make copy of renderInput so changes to it don't stick from one file to the next
+            const renderInputCopy = JSON.parse(JSON.stringify(renderInput));
             // do any custom processing of each file
-            extraModule.process(file, data, renderInput);
+            extraModule.process(file, data, renderInputCopy);
 
-            let renderedData = env.renderString(data, renderInput);
+            let renderedData = env.renderString(data, renderInputCopy);
 
             // now pre-process the HTML a bit
             renderedData = prepareHTML(renderedData);
