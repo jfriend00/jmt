@@ -65,4 +65,4 @@ function configureMenuClick() {
 }
 
 configureArrowKeys();
-configureMenuClick();
+//configureMenuClick();
