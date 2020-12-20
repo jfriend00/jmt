@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .menu {
+            visibility: hidden;
+        }
+
+        button + .menu:active,
+        button:focus + .menu {
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+
+Click me: <button tabindex="-1">☰</button>
+<nav class="menu">
+  <ul>
+    <li>
+      <button onclick="alert('Hello there!')">
+        Display Greeting
+      </button>
+    </li>
+    <li>
+      <button onclick="alert('Clicked print!')">
+        Print This Page
+      </button>
+    </li>
+  </ul>
+</nav>
+
+</body>
+</html>
