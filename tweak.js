@@ -17,7 +17,10 @@ module.exports = {
         let currentItem;
         let currentIndex;
         for (let [index, item] of renderInput.pages.entries()) {
-            if (item.url === renderInput._info.outputBase) {
+            // have to special case "index.html" because the matching
+            // url for that is ""
+            if (item.url === renderInput._info.outputBase ||
+              (renderInput._info.outputBase === "index.html" && item.url === "")) {
                 currentItem = item;
                 currentIndex = index;
                 break;
