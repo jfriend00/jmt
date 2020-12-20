@@ -161,7 +161,7 @@ async function run() {
             }
             let outputFile = path.join(outputDir, base);
             outputFile = replaceExtension(outputFile, "html");
-            let outputBase = path.basename(loutputFile);
+            let outputBase = path.basename(outputFile);
             let data = fs.readFileSync(file).toString();
             renderInput._info = { base, outputDir, outputBase };
 

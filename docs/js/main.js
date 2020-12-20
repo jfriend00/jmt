@@ -65,6 +65,7 @@ function configureBottomLinks(currentIndex) {
 }
 
 function configureArrowLinks(currentIndex) {
+    return;
     let arrowLinks = document.querySelectorAll("#navArrows a");
     if (arrowLinks.length >= 2 && currentIndex !== -1) {
         if (currentIndex === 0) {
