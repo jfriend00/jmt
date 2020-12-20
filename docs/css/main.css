@@ -221,10 +221,17 @@ img.right {
     text-decoration: none;
 }
 
+/*
 .menu:focus .popup,
 .menu:active .popup,
 .menu .burger:focus + .popup,
 .popup:focus-within {
+    left: 0;
+}
+*/
+
+.burger + .popup:active,
+.burger:focus + .popup {
     left: 0;
 }
 
