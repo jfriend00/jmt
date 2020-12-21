@@ -43,15 +43,16 @@
         {% block content %}
         {% endblock %}
         <p id="bottom-nav" class="center">
-        {% if prevUrl %}
+        {%- if prevUrl or prevUrl === "" %}
+           {% set foundPrev = true %}
            <a href="{{prevUrl}}">{{prevName}}</a>
-        {% endif %}
-        {% if prevUrl and nextUrl %}
+        {%- endif %}
+        {%- if foundPrev and nextUrl %}
          |
-        {% endif %}
-        {% if nextUrl %}
+        {%- endif %}
+        {%- if nextUrl %}
            <a href="{{nextUrl}}">{{nextName}}</a>
-        {% endif %}
+        {%- endif %}
         </p>
 
     </div>
