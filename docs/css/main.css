@@ -257,3 +257,11 @@ img.right {
 .popup li:hover {
     background-color: #DDD;
 }
+
+.epilogue.displayTable {
+    font-size: 11pt;
+}
+
+.epilogue.displayTable th, .epilogue.displayTable td {
+    padding: 0.2rem 0.3rem;
+}
