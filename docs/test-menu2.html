@@ -21,7 +21,7 @@
 </head>
 <body>
 
-Click me 7: <button id="menuButton" tabindex="0">☰</button>
+Click me 8: <button id="menuButton" tabindex="0">☰</button>
 <nav class="menu">
   <ul>
     <li>
@@ -41,16 +41,20 @@ Click me 7: <button id="menuButton" tabindex="0">☰</button>
 // for logging into a window on devices that you can't easily see
 // the console
 function log(...args) {
-    let logger = document.querySelector("#log");
-    if (!logger) {
-        logger = document.createElement("div");
-        logger.style.margin = "0.5rem";
-        logger.id = "log";
-        document.body.appendChild(logger);
+    try {
+        let logger = document.querySelector("#log");
+        if (!logger) {
+            logger = document.createElement("div");
+            logger.style.margin = "0.5rem";
+            logger.id = "log";
+            document.body.appendChild(logger);
+        }
+        let msg = document.createElement("div");
+        msg.textContent = args.join(" ");
+        logger.appendChild(msg);
+    } catch(e) {
+        alert("Got log() error" + e.msg);
     }
-    let msg = document.createElement("div");
-    msg.textContent = args.join(" ");
-    logger.appendChild(msg);
 }
 
 log("hello");
