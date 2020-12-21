@@ -53,7 +53,9 @@ function log(...args) {
     logger.appendChild(msg);
 }
 
+log("hello");
 const menuButton = document.getElementById("menuButton");
+log(menuButton.id);
 menuButton.addEventListener("click", function(e) {
     log("got click");
     const menu = document.querySelector(".menu");
