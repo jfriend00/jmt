@@ -8,6 +8,11 @@ function log() {
         logger.style.margin = "0.5rem";
         logger.id = "log";
         document.body.appendChild(logger);
+        let marker = document.createElement("div");
+        marker.id = "logger-end";
+        marker.innerHTML = "<hr>";
+        document.body.appendChild(marker);
+
     }
     let msg = document.createElement("div");
 
@@ -21,6 +26,8 @@ function log() {
 
     msg.textContent = args.join(" ");
     logger.appendChild(msg);
+    let marker = document.getElementById("logger-end");
+    marker.scrollIntoView({ behavior: "smooth", block: "end" });
 }
 
 // handle left/right arrow for moving foward/back in the trip
@@ -69,14 +76,32 @@ function configureMenuClick() {
     }
 
     function checkClose(e) {
-        if (debug) log("checkClose");
+        if (debug) {
+            log("-----------------")
+            log("checkClose");
+        }
         let popup = document.querySelector("#menu .popup");
         if (isPopupVisible(popup)) {
-            // now check if e.target is in the popup
-            let parentPopup = e.target.closest(".popup");
-            if (!parentPopup) {
-                closePopup(popup, e);
+            // if target is the burger, let the click go
+            // because the click handler on the burger will close the menu
+            if (e.target !== burger) {
+                // now check if e.target is in the popup
+                let parentPopup = e.target.closest(".popup");
+                if (!parentPopup) {
+                    if (debug) log("click detected outside popup, so close popup")
+                    closePopup(popup, e);
+                } else {
+                    if (debug) log("click detected in the popup");
+                }
+            } else {
+                if (debug) log("click detected on burger by outside handlers");
             }
+        } else {
+            if (debug) log("popup not visible, so no need to close it with any click");
+        }
+        if (debug) {
+            log("done checkClose");
+            log("-----------------")
         }
     }
     // capture other events that should close the menu
@@ -87,7 +112,7 @@ function configureMenuClick() {
         if (e.keyCode === 27) {
             let popup = document.querySelector("#menu .popup");
             if (isPopupVisible(popup)) {
-                closePopup(popup, e);
+                closePopup(popup);
             }
         }
     }, true);
@@ -97,8 +122,10 @@ function configureMenuClick() {
         let popup = document.querySelector("#menu .popup");
         // toggle the popup
         if (isPopupVisible(popup)) {
+            if (debug) log("hiding popup");
             popup.style.left = "-9999px";
         } else {
+            if (debug) log("showing popup");
             popup.style.left = "0";
         }
     });
