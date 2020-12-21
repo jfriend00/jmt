@@ -61,6 +61,32 @@ function configureMenuClick() {
         popup.style.left = "-9999px";
     }
 
+    function checkClose(e) {
+        console.log("checkClose");
+        let popup = document.querySelector("#menu .popup");
+        if (isPopupVisible(popup)) {
+            // now check if e.target is in the popup
+            let parentPopup = e.target.closest(".popup");
+            if (!parentPopup) {
+                // eat this event so the event isn't otherwise processed
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                closePopup();
+            }
+        }
+    }
+    // capture other events that should close the menu
+    window.addEventListener("click", checkClose, true);
+    window.addEventListener("touchstart", checkClose, true);
+    window.addEventListener("keydown", function(e) {
+        // if Esc key, then close menu
+        if (e.keyCode === 27) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            closePopup();
+        }
+    }, true);
+
     burger.addEventListener("click", function(e) {
         if (debug) log("click on burger");
         let popup = document.querySelector("#menu .popup");
@@ -71,32 +97,6 @@ function configureMenuClick() {
             popup.style.left = "0";
         }
     });
-
-    function checkClose(e) {
-        console.log("checkClose");
-        let popup = document.querySelector("#menu .popup");
-        if (isPopupVisible(popup)) {
-            // now check if e.target is in the popup
-            let parentPopup = e.target.closest(".popup");
-            if (!parentPopup) {
-                closePopup();
-                // eat this event so the mouse isn't otherwise processed
-                e.preventDefault();
-                e.stopImmediatePropagation();
-            }
-        }
-    }
-    // capture other events that should close the menu
-    window.addEventListener("click", checkClose, true);
-    window.addEventListener("touchstart", checkClose, true);
-    window.addEventListener("keydown", function(e) {
-        // if Esc key, then close menu
-        if (e.keyCode === 27) {
-            closePopup();
-            e.preventDefault();
-            e.stopImmediatePropagation();
-        }
-    }, true);
 }
 
 configureArrowKeys();
