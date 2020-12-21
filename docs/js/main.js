@@ -1,6 +1,7 @@
 // for logging into a window on devices that you can't easily see
 // the console
-function log(...args) {
+function log() {
+    let args = Array.prototype.slice.call(arguments);
     let logger = document.querySelector("#log");
     if (!logger) {
         logger = document.createElement("div");
@@ -9,6 +10,7 @@ function log(...args) {
         document.body.appendChild(logger);
     }
     let msg = document.createElement("div");
+
     msg.textContent = args.join(" ");
     logger.appendChild(msg);
 }
@@ -41,25 +43,28 @@ function configureMenuClick() {
     // it will already be visible when the initial click addEventListener
     // comes through.  So, we have make sure the click was some period of
     // time after the focus event before we process it
-    const debug = false;
+    const debug = true;
     const clickTime = 300;
     const burger = document.querySelector("#menu .burger");
     let burgerFocusTime = Date.now();
     burger.addEventListener("click", function(e) {
-        if (debug) log("click on burger")
+        if (debug) log("click on burger");
         let popup = document.querySelector("#menu .popup");
         let style = window.getComputedStyle(popup);
-        if (style.display !== "none" && Date.now() - burgerFocusTime > clickTime) {
-            burger.blur();
-            e.preventDefault();
+        let left = parseInt(style.left, 10);
+        if (debug) log("left is: " + left);
+        if (left < 0) {
+            popup.style.left = "0";
+        } else {
+            popup.style.left = "-9999px";
         }
     });
     burger.addEventListener("focus", function(e) {
-        if (debug) log("focus on burger")
+        if (debug) log("focus on burger");
         burgerFocusTime = Date.now();
     });
     burger.addEventListener("blur", function(e) {
-        if (debug) log("blur on burger")
+        if (debug) log("blur on burger");
     });
 
 
@@ -68,19 +73,19 @@ function configureMenuClick() {
         let links = document.querySelectorAll(".popup a");
         for (let link of links) {
             link.addEventListener("mousedown", function(e) {
-                log("mousedown on popup a")
+                log("mousedown on popup a");
             });
             link.addEventListener("mouseup", function(e) {
-                log("mouseup on popup a")
+                log("mouseup on popup a");
             });
             link.addEventListener("focus", function(e) {
-                log("focus on popup a")
+                log("focus on popup a");
             });
             link.addEventListener("blur", function(e) {
-                log("blur on popup a")
+                log("blur on popup a");
             });
             link.addEventListener("click", function(e) {
-                log("click on popup a")
+                log("click on popup a");
             });
         }
     }

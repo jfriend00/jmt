@@ -208,31 +208,8 @@ img.right {
     position: relative;
 }
 
-/*
-.burger:focus .popup, .burger img:focus .popup {
-    display: block;
-}*/
-
-.burger:hover .popup, .burger img:hover .popup {
-    display: block;
-}
-
 .burger {
     text-decoration: none;
-}
-
-/*
-.menu:focus .popup,
-.menu:active .popup,
-.menu .burger:focus + .popup,
-.popup:focus-within {
-    left: 0;
-}
-*/
-
-.burger + .popup:active,
-.burger:focus + .popup {
-    left: 0;
 }
 
 .popup {
