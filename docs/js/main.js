@@ -46,7 +46,7 @@ function configureArrowKeys() {
 }
 
 function configureMenuClick() {
-    const debug = false;
+    const debug = true;
     const burger = document.querySelector("#menu .burger");
 
     function isPopupVisible(popup) {
@@ -56,22 +56,26 @@ function configureMenuClick() {
         return left >= 0;
     }
 
-    function closePopup() {
-        let popup = document.querySelector("#menu .popup");
+    function closePopup(popup, e) {
+        if (e) {
+            // eat this event so the event isn't otherwise processed
+            e.preventDefault();
+            e.stopImmediatePropagation();
+        }
+        if (!popup) {
+            popup = document.querySelector("#menu .popup");
+        }
         popup.style.left = "-9999px";
     }
 
     function checkClose(e) {
-        console.log("checkClose");
+        if (debug) log("checkClose");
         let popup = document.querySelector("#menu .popup");
         if (isPopupVisible(popup)) {
             // now check if e.target is in the popup
             let parentPopup = e.target.closest(".popup");
             if (!parentPopup) {
-                // eat this event so the event isn't otherwise processed
-                e.preventDefault();
-                e.stopImmediatePropagation();
-                closePopup();
+                closePopup(popup, e);
             }
         }
     }
@@ -81,9 +85,10 @@ function configureMenuClick() {
     window.addEventListener("keydown", function(e) {
         // if Esc key, then close menu
         if (e.keyCode === 27) {
-            e.preventDefault();
-            e.stopImmediatePropagation();
-            closePopup();
+            let popup = document.querySelector("#menu .popup");
+            if (isPopupVisible(popup)) {
+                closePopup(popup, e);
+            }
         }
     }, true);
 
