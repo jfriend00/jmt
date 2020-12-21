@@ -217,7 +217,7 @@ img.right {
     top: 22px;
     left: -9999px;
     max-height: 85vh;    /* add scrollbar if needed */
-    max-width: 90vw;
+    max-width: 95vw;
     border: 1px solid black;
     z-index: 10;
     /* border-radius: 4px; */

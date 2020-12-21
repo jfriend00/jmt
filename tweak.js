@@ -10,6 +10,7 @@ module.exports = {
         //   renderInput.nextName
         //   renderInput.prevUrl
         //   renderInput.prevName
+        //   renderInput.title
         if (!renderInput.pages) {
             throw new Error("Expecting renderInput.pages to be an object")
         }
@@ -20,7 +21,7 @@ module.exports = {
             // have to special case "index.html" because the matching
             // url for that is ""
             if (item.url === renderInput._info.outputBase ||
-              (renderInput._info.outputBase === "index.html" && item.url === "")) {
+                (renderInput._info.outputBase === "index.html" && item.url === "")) {
                 currentItem = item;
                 currentIndex = index;
                 break;
@@ -29,6 +30,7 @@ module.exports = {
         // it is OK to not find currentItem as long as the
         // page being processed does not need the data we're putting in the page
         if (currentItem) {
+            renderInput.title = currentItem.name;
             if (currentIndex !== 0) {
                 renderInput.prevUrl = renderInput.pages[currentIndex - 1].url;
                 renderInput.prevName = renderInput.pages[currentIndex - 1].name;
