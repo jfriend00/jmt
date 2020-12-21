@@ -1,7 +1,7 @@
 {
     "pages": [
         {"name": "About the Trail", "url": ""},
-        {"name": "Getting a Permit", "url": "getting-started.html"},
+        {"name": "Planning and a Permit", "url": "getting-started.html"},
         {"name": "Getting in Shape", "url": "getting-in-shape.html"},
         {"name": "Planning the Hike", "url": "planning-the-hike.html"},
         {"name": "Gear Planning", "url": "gear-planning.html"},
