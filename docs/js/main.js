@@ -11,6 +11,14 @@ function log() {
     }
     let msg = document.createElement("div");
 
+    args = args.map(function(item) {
+        if (typeof item === "object") {
+            return JSON.stringify(item);
+        } else {
+            return item;
+        }
+    });
+
     msg.textContent = args.join(" ");
     logger.appendChild(msg);
 }
@@ -38,57 +46,57 @@ function configureArrowKeys() {
 }
 
 function configureMenuClick() {
-    // this is complicated because the click event comes after
-    // the focus event so even when the menu was not yet visible,
-    // it will already be visible when the initial click addEventListener
-    // comes through.  So, we have make sure the click was some period of
-    // time after the focus event before we process it
-    const debug = true;
-    const clickTime = 300;
+    const debug = false;
     const burger = document.querySelector("#menu .burger");
-    let burgerFocusTime = Date.now();
-    burger.addEventListener("click", function(e) {
-        if (debug) log("click on burger");
-        let popup = document.querySelector("#menu .popup");
+
+    function isPopupVisible(popup) {
         let style = window.getComputedStyle(popup);
         let left = parseInt(style.left, 10);
         if (debug) log("left is: " + left);
-        if (left < 0) {
-            popup.style.left = "0";
-        } else {
+        return left >= 0;
+    }
+
+    function closePopup() {
+        let popup = document.querySelector("#menu .popup");
+        popup.style.left = "-9999px";
+    }
+
+    burger.addEventListener("click", function(e) {
+        if (debug) log("click on burger");
+        let popup = document.querySelector("#menu .popup");
+        // toggle the popup
+        if (isPopupVisible(popup)) {
             popup.style.left = "-9999px";
+        } else {
+            popup.style.left = "0";
         }
     });
-    burger.addEventListener("focus", function(e) {
-        if (debug) log("focus on burger");
-        burgerFocusTime = Date.now();
-    });
-    burger.addEventListener("blur", function(e) {
-        if (debug) log("blur on burger");
-    });
 
-
-    // debugging
-    if (debug) {
-        let links = document.querySelectorAll(".popup a");
-        for (let link of links) {
-            link.addEventListener("mousedown", function(e) {
-                log("mousedown on popup a");
-            });
-            link.addEventListener("mouseup", function(e) {
-                log("mouseup on popup a");
-            });
-            link.addEventListener("focus", function(e) {
-                log("focus on popup a");
-            });
-            link.addEventListener("blur", function(e) {
-                log("blur on popup a");
-            });
-            link.addEventListener("click", function(e) {
-                log("click on popup a");
-            });
+    function checkClose(e) {
+        console.log("checkClose");
+        let popup = document.querySelector("#menu .popup");
+        if (isPopupVisible(popup)) {
+            // now check if e.target is in the popup
+            let parentPopup = e.target.closest(".popup");
+            if (!parentPopup) {
+                closePopup();
+                // eat this event so the mouse isn't otherwise processed
+                e.preventDefault();
+                e.stopImmediatePropagation();
+            }
         }
     }
+    // capture other events that should close the menu
+    window.addEventListener("click", checkClose, true);
+    window.addEventListener("touchstart", checkClose, true);
+    window.addEventListener("keydown", function(e) {
+        // if Esc key, then close menu
+        if (e.keyCode === 27) {
+            closePopup();
+            e.preventDefault();
+            e.stopImmediatePropagation();
+        }
+    }, true);
 }
 
 configureArrowKeys();
