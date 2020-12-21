@@ -106,7 +106,7 @@ function configureMenuClick() {
     }
     // capture other events that should close the menu
     window.addEventListener("click", checkClose, true);
-    window.addEventListener("touchstart", checkClose, true);
+    //    window.addEventListener("touchstart", checkClose, true);
     window.addEventListener("keydown", function(e) {
         // if Esc key, then close menu
         if (e.keyCode === 27) {
