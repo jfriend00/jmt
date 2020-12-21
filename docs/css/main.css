@@ -124,7 +124,7 @@ img.right {
 
 .displayTable {
     width: 100%;
-    font-size: 1.35em;
+    font-size: 1em;
     border: 1px solid black;
 }
 
@@ -132,7 +132,7 @@ img.right {
     border: 1px solid black;
     text-align: left;
     border-collapse: collapse;
-    padding: 0.7rem;
+    padding: 0.2rem 0.4rem;
 }
 
 /* Make youtube embedded video responsive */
