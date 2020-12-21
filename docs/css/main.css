@@ -219,6 +219,7 @@ img.right {
     max-height: 85vh;    /* add scrollbar if needed */
     max-width: 95vw;
     border: 1px solid black;
+    border-radius: 6px;
     z-index: 10;
     /* border-radius: 4px; */
     box-shadow: 0 0.35em 0.45em rgba(0,0,0,0.5);
