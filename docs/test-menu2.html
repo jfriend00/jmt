@@ -21,7 +21,7 @@
 </head>
 <body>
 
-Click me 8: <button id="menuButton" tabindex="0">☰</button>
+Click me 9: <button id="menuButton" tabindex="0">☰</button>
 <nav class="menu">
   <ul>
     <li>
@@ -40,41 +40,44 @@ Click me 8: <button id="menuButton" tabindex="0">☰</button>
 <script>
 // for logging into a window on devices that you can't easily see
 // the console
-function log(...args) {
-    try {
-        let logger = document.querySelector("#log");
-        if (!logger) {
-            logger = document.createElement("div");
-            logger.style.margin = "0.5rem";
-            logger.id = "log";
-            document.body.appendChild(logger);
+try {
+    function log(arg) {
+        try {
+            let logger = document.querySelector("#log");
+            if (!logger) {
+                logger = document.createElement("div");
+                logger.style.margin = "0.5rem";
+                logger.id = "log";
+                document.body.appendChild(logger);
+            }
+            let msg = document.createElement("div");
+            msg.textContent = "" + arg;
+            logger.appendChild(msg);
+        } catch(e) {
+            alert("Got log() error2: " + e.message);
         }
-        let msg = document.createElement("div");
-        msg.textContent = args.join(" ");
-        logger.appendChild(msg);
-    } catch(e) {
-        alert("Got log() error" + e.msg);
     }
+
+    log("hello");
+    const menuButton = document.getElementById("menuButton");
+    log(menuButton.id);
+    menuButton.addEventListener("click", function(e) {
+        log("got click");
+        const menu = document.querySelector(".menu");
+        let style = window.getComputedStyle(menu);
+        if (style.visibility === "hidden") {
+            log("making menu visible");
+            menu.style.visibility = "visible";
+        } else {
+            log("making menu hidden");
+            menu.style.visibility = "hidden";
+        }
+        log("got to end");
+        log("-------------");
+    });
+} catch(e) {
+    alert("Got log() error1: " + e.message);
 }
-
-log("hello");
-const menuButton = document.getElementById("menuButton");
-log(menuButton.id);
-menuButton.addEventListener("click", function(e) {
-    log("got click");
-    const menu = document.querySelector(".menu");
-    let style = window.getComputedStyle(menu);
-    if (style.visibility === "hidden") {
-        log("making menu visible");
-        menu.style.visibility = "visible";
-    } else {
-        log("making menu hidden");
-        menu.style.visibility = "hidden";
-    }
-    log("got to end");
-    log("-------------");
-});
-
 </script>
 
 </body>
