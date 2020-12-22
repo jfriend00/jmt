@@ -14,8 +14,15 @@
     .hidden {
         display: none;
     }
+    .expandedContainer {
+        max-width: 100%;
+        overflow: hidden;
+        overflow-x: auto;
+        overflow-y: auto;
+    }
     </style>
 <body>
+    <p>Here's some text before</p>
     <figure class="captionImage expando">
         <img class="photo" src="https://photos.smugmug.com/photos/i-Bx7RMpc/0/25b951e5/L/i-Bx7RMpc-L.png">
         <figcaption>
@@ -58,5 +65,6 @@
         });
     }
     </script>
+    <p>Here's some text after</p>
 </body>
 </html>
