@@ -251,14 +251,40 @@ function configureExpandos() {
             let div = document.createElement("div");
             div.className = "expandedContainer";
             div.setAttribute("draggable", "false");
+            let contentContainer = expando.closest(".content");
+
+            function configureExpandedSize() {
+                // now set up the width of the container
+                // document.documentElement.clientWidth is the width inside the scrollbars
+                //    of the overall browser window
+                // TODO: use the data-width and data-height attributes off the expando image
+                // to limit how much we grow the element to the max dimentions of the image
+                // TODO: if content is already 100%, then skip all of this width setting
+                let windowWidth = document.documentElement.clientWidth;
+                let contentWidth = contentContainer.clientWidth;
+                let leftMargin = Math.round((windowWidth - contentWidth) / 2);
+                let rightMargin = windowWidth - leftMargin - contentWidth;
+                div.style["margin-left"] = `-${leftMargin}px`;
+                div.style["margin-right"] = `-${rightMargin}px`;
+                div.style.width = `${windowWidth}px`;
+            }
+
+            // set up the size parameters
+            configureExpandedSize();
             div.innerHTML = `<img class="expanded" draggable="false" src="${src}">`;
             const dragger = configureDragScroll(div);
+
+            // handle click to close
             div.addEventListener("click", function(e) {
+                window.removeEventListener("resize", configureExpandedSize);
                 expando.classList.remove("hidden");
                 div.parentNode.removeChild(div);
                 dragger.clear();
             });
+            // insert into DOM
             expando.parentNode.insertBefore(div, expando);
+            // readjust sizing whenever window size changes
+            window.addEventListener("resize", configureExpandedSize);
         });
     }
 }
