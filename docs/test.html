@@ -41,16 +41,25 @@
     // https://photos.smugmug.com/photos/i-Bx7RMpc/0/25b951e5/L/i-Bx7RMpc-L.png
     // to this:
     // https://photos.smugmug.com/photos/i-Bx7RMpc/0/25b951e5/O/i-Bx7RMpc.png
-    function getFullSizeUrl(base) {
+    // or to this:
+    // https://photos.smugmug.com/photos/i-Bx7RMpc/0/25b951e5/X5/i-Bx7RMpc-X5.png
+    function getSizeUrl(base, size = "O") {
         const sizePieceIndexFromEnd = 2;
         const filenamePieceIndexFromEnd = 1;
         const pieces = base.split("/");
         const len = pieces.length;
         // replace size in URL with original "O"
-        pieces[len - sizePieceIndexFromEnd] = "O";
+        pieces[len - sizePieceIndexFromEnd] = size;
 
         const filename = pieces[len - filenamePieceIndexFromEnd];
-        pieces[len - filenamePieceIndexFromEnd] = filename.replace(/(-[^.]{1,2})(\..{1,4})$/, "$2");
+        // regex
+        // image size shorthand such as XL or S
+        // (-[^.]{1,2})    a dash folowed by one or two characters that are not a period
+        // file extension
+        // (\..{1,4})$    a period followed by 1-4 characters at the end of the string
+        const newSize = size === "O" ? "" : `-${size}`;
+        const newFilename = filename.replace(/(-[^.]{1,2})(\..{1,4})$/, newSize + "$2");
+        pieces[len - filenamePieceIndexFromEnd] = newFilename;
         return pieces.join("/");
     }
 
@@ -129,7 +138,7 @@
     for (let expando of expandos) {
         expando.addEventListener("click", function(e) {
             let img = expando.querySelector("img");
-            let src = getFullSizeUrl(img.src);
+            let src = getSizeUrl(img.src, "X5");
 
             // hide existing image and caption
             expando.classList.add("hidden");
