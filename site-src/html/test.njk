@@ -20,6 +20,12 @@
         overflow: hidden;
         overflow-x: auto;
         overflow-y: auto;
+        cursor: grab;
+    }
+
+    .dragging {
+        cursor: grabbing;
+        user-select: none;
     }
     </style>
 <body>
@@ -47,6 +53,78 @@
         pieces[len - filenamePieceIndexFromEnd] = filename.replace(/(-[^.]{1,2})(\..{1,4})$/, "$2");
         return pieces.join("/");
     }
+
+    function configureDragScroll(elem) {
+        let pos = { top: 0, left: 0, x: 0, y: 0 };
+        let mouseDownTime;
+
+        function mouseDownHandler(e) {
+            console.log("mouseDownHandler");
+
+            elem.classList.add("dragging");
+            elem.style.cursor = 'grabbing';
+            elem.style.userSelect = 'none';
+
+            pos = {
+                left: elem.scrollLeft,
+                top: elem.scrollTop,
+                // Get the current mouse position
+                x: e.clientX,
+                y: e.clientY,
+            };
+
+            elem.addEventListener('click', dragClickHandler, {
+                capture: true, once: true
+            });
+            document.addEventListener('mousemove', mouseMoveHandler);
+            document.addEventListener('mouseup', mouseUpHandler);
+
+            mouseDownTime = Date.now();
+        }
+
+        function mouseMoveHandler(e) {
+            console.log("mouseMoveHandler");
+            // How far the mouse has been moved
+            const dx = e.clientX - pos.x;
+            const dy = e.clientY - pos.y;
+
+            // Scroll the element
+            elem.scrollTop = pos.top - dy;
+            elem.scrollLeft = pos.left - dx;
+        }
+
+        function mouseUpHandler(e) {
+            console.log("mouseUpHandler");
+
+            elem.style.cursor = 'grab';
+            elem.style.removeProperty('user-select');
+            document.removeEventListener('mousemove', mouseMoveHandler);
+            document.removeEventListener('mouseup', mouseUpHandler);
+
+            elem.classList.remove("dragging");
+        }
+
+        // if the mouse was down for more than 250ms, treat this as a drag
+        //     and prevent the click event
+        // if the mouse was down for less than 250ms, treat this is a click
+        //     and let the click event occur
+        function dragClickHandler(e) {
+            console.log("Got drag click handler");
+            const deltaT = Date.now() - mouseDownTime;
+            const dx = Math.abs(e.clientX - pos.x);
+            const dy = Math.abs(e.clientY - pos.y);
+            const minT = 250;
+            const minXY = 15;
+            console.log(deltaT, dx, dy);
+            if (deltaT > 250 || dx > minXY || dy > minXY) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+            }
+        }
+
+        elem.addEventListener('mousedown', mouseDownHandler, true);
+    }
+
     let expandos = document.querySelectorAll(".captionImage.expando");
     for (let expando of expandos) {
         expando.addEventListener("click", function(e) {
@@ -57,7 +135,9 @@
             expando.classList.add("hidden");
             let div = document.createElement("div");
             div.className = "expandedContainer";
-            div.innerHTML = `<img class="expanded" src="${src}">`;
+            div.draggable = false;
+            div.innerHTML = `<img class="expanded" draggable="false" src="${src}">`;
+            configureDragScroll(div);
             div.addEventListener("click", function(e) {
                 expando.classList.remove("hidden");
                 div.parentNode.removeChild(div);
