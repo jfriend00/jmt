@@ -27,6 +27,22 @@
 {% endif %}
 {% endmacro %}
 
+{# photo with a caption (expando) #}
+{% macro expandoPhoto(url, caption='') %}
+{% if caption %}
+<figure class="captionImage expando">
+    <img class="photo" src="https://photos.smugmug.com/photos{{url}}" onload="captionLoaded(this)">
+    <figcaption>
+        {{caption}}
+    </figcaption>
+</figure>
+{% else %}
+<img class="photo" src="https://photos.smugmug.com/photos{{url}}">
+{% endif %}
+{% endmacro %}
+
+
+
 {# raw youtube video embed (utility macro for within this file)
    This has hard-wired youtube embedding parameters for this project
 #}

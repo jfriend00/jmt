@@ -5,100 +5,58 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <base href="/jmt/">
-        
+        <link href="css/main.css" rel="stylesheet">
         <link rel="shortcut icon" type="image/png" sizes="16x16" href="images/mountain-16x16.png">
         <link rel="shortcut icon" type="image/png" sizes="32x32" href="images/mountain-32x32.png">
         <link rel="shortcut icon" type="image/png" sizes="64x64" href="images/mountain-64x64.png">
     </head>
     <style>
-        /* from main.css */
-        body {
-          margin: 0;
-        }
-
-        .plain {
-            text-decoration: none;
-            color: black;
-        }
-
-        /* end of from main.css */
-
-        .headerX {
-            position: fixed;
-            top: 0;
-            padding: 0.25rem 0.5rem;
-            width: 100%;
-            overflow: hidden;
-            background-color: #AAA;
-            z-index: 1;                 /* keep embeded youtube from overlapping */
-            box-sizing: border-box;
-        }
-
-        .headerX .container {
-            display: flex;
-            width: 800px;
-            max-width: 100%;
-            align-items: baseline;
-        }
-
-        #navArrows {
-        }
-
-        .headerX h2 {
-            margin: 0;
-            display: flex;
-            font-size: 26px;
-        }
-
-        .headerX .left, .headerX .right {
-            padding: 0;
-            flex-shrink: 0;
-            flex-grow: 0;
-        }
-
-        .headerX .left {
-            margin-right: 1rem;
-        }
-
-        .headerX .right {
-            margin-left: 1rem;
-        }
-
-        .title {
-            flex-wrap: wrap;
-            flex-grow: 2;
-        }
+    .hidden {
+        display: none;
+    }
     </style>
 <body>
+    <figure class="captionImage expando">
+        <img class="photo" src="https://photos.smugmug.com/photos/i-Bx7RMpc/0/25b951e5/L/i-Bx7RMpc-L.png">
+        <figcaption>
+            Day by day elevation profile - click for expanded and scrollable version
+        </figcaption>
+    </figure>
+    <script>
+    // Transform from this:
+    // https://photos.smugmug.com/photos/i-Bx7RMpc/0/25b951e5/L/i-Bx7RMpc-L.png
+    // to this:
+    // https://photos.smugmug.com/photos/i-Bx7RMpc/0/25b951e5/O/i-Bx7RMpc.png
+    function getFullSizeUrl(base) {
+        const sizePieceIndexFromEnd = 2;
+        const filenamePieceIndexFromEnd = 1;
+        const pieces = base.split("/");
+        const len = pieces.length;
+        // replace size in URL with original "O"
+        pieces[len - sizePieceIndexFromEnd] = "O";
 
+        const filename = pieces[len - filenamePieceIndexFromEnd];
+        pieces[len - filenamePieceIndexFromEnd] = filename.replace(/(-[^.]{1,2})(\..{1,4})$/, "$2");
+        return pieces.join("/");
+    }
+    let expandos = document.querySelectorAll(".captionImage.expando");
+    for (let expando of expandos) {
+        expando.addEventListener("click", function(e) {
+            let img = expando.querySelector("img");
+            let src = getFullSizeUrl(img.src);
 
-<style>
-.menu {
-    visibility: hidden;
-}
-
-button + .menu:active,
-button:focus + .menu {
-    visibility: visible;
-}
-</style>
-
-<div>
-<button>☰ Some Text</button>
-<nav class="menu">
-  <ul>
-    <li>
-      <button onclick="alert('Hello there!')">
-        Display Greeting
-      </button>
-    </li>
-    <li>
-      <button onclick="print()">
-        Print This Page
-      </button>
-    </li>
-  </ul>
-</nav>
-</div>
+            // hide existing image and caption
+            expando.classList.add("hidden");
+            let div = document.createElement("div");
+            div.className = "expandedContainer";
+            div.innerHTML = `<img class="expanded" src="${src}">`;
+            div.addEventListener("click", function(e) {
+                expando.classList.remove("hidden");
+                div.parentNode.removeChild(div);
+            });
+            expando.parentNode.insertBefore(div, expando);
+        });
+    }
+    </script>
 </body>
 </html>
