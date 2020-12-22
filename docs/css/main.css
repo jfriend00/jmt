@@ -176,6 +176,10 @@ img.right {
     margin: 0 0 1.25rem 0;
 }
 
+.captionImage.top {
+    margin: 1rem 0;
+}
+
 .captionVideo .caption {
     margin-top: 0.5rem;
 }
