@@ -131,6 +131,14 @@
             }
         }
 
+        // silly Firefox seems to ignore the draggable attribute
+        // so this is needed to stop the built-in drag/drop behavior
+        // for images
+        elem.addEventListener("dragstart", function(e) {
+            console.log("dragstart")
+            e.preventDefault();
+            e.stopImmediatePropagation();
+        });
         elem.addEventListener('mousedown', mouseDownHandler, true);
     }
 
@@ -144,7 +152,7 @@
             expando.classList.add("hidden");
             let div = document.createElement("div");
             div.className = "expandedContainer";
-            div.draggable = false;
+            div.setAttribute("draggable", "false");
             div.innerHTML = `<img class="expanded" draggable="false" src="${src}">`;
             configureDragScroll(div);
             div.addEventListener("click", function(e) {
