@@ -265,3 +265,23 @@ img.right {
 .epilogue.displayTable th, .epilogue.displayTable td {
     padding: 0.2rem 0.3rem;
 }
+
+/* ---------------- */
+/* expando CSS      */
+.hidden {
+    display: none;
+}
+.expandedContainer {
+    max-width: 100%;
+    max-height: 90vh;
+    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: auto;
+    cursor: grab;
+}
+
+.dragging {
+    cursor: grabbing;
+    user-select: none;
+}
+/* ---------------- */

@@ -131,5 +131,139 @@ function configureMenuClick() {
     });
 }
 
+// Transform from this:
+// https://photos.smugmug.com/photos/i-Bx7RMpc/0/25b951e5/L/i-Bx7RMpc-L.png
+// to this:
+// https://photos.smugmug.com/photos/i-Bx7RMpc/0/25b951e5/O/i-Bx7RMpc.png
+// or to this:
+// https://photos.smugmug.com/photos/i-Bx7RMpc/0/25b951e5/X5/i-Bx7RMpc-X5.png
+function getSizeUrl(base, size = "O") {
+    const sizePieceIndexFromEnd = 2;
+    const filenamePieceIndexFromEnd = 1;
+    const pieces = base.split("/");
+    const len = pieces.length;
+    // replace size in URL with original "O"
+    pieces[len - sizePieceIndexFromEnd] = size;
+
+    const filename = pieces[len - filenamePieceIndexFromEnd];
+    // regex
+    // image size shorthand such as XL or S
+    // (-[^.]{1,2})    a dash folowed by one or two characters that are not a period
+    // file extension
+    // (\..{1,4})$    a period followed by 1-4 characters at the end of the string
+    const newSize = size === "O" ? "" : `-${size}`;
+    const newFilename = filename.replace(/(-[^.]{1,2})(\..{1,4})$/, newSize + "$2");
+    pieces[len - filenamePieceIndexFromEnd] = newFilename;
+    return pieces.join("/");
+}
+
+function configureDragScroll(elem) {
+    let pos = { top: 0, left: 0, x: 0, y: 0 };
+    let mouseDownTime;
+
+    function mouseDownHandler(e) {
+        elem.classList.add("dragging");
+
+        pos = {
+            left: elem.scrollLeft,
+            top: elem.scrollTop,
+            // Get the current mouse position
+            x: e.clientX,
+            y: e.clientY,
+        };
+
+        document.addEventListener('click', dragClickHandler, {
+            capture: true,
+            once: true
+        });
+        document.addEventListener('mousemove', mouseMoveHandler);
+        document.addEventListener('mouseup', mouseUpHandler);
+
+        mouseDownTime = Date.now();
+    }
+
+    function mouseMoveHandler(e) {
+        // How far the mouse has been moved
+        const dx = e.clientX - pos.x;
+        const dy = e.clientY - pos.y;
+
+        // Scroll the element
+        elem.scrollTop = pos.top - dy;
+        elem.scrollLeft = pos.left - dx;
+    }
+
+    function mouseUpHandler(e) {
+        document.removeEventListener('mousemove', mouseMoveHandler);
+        document.removeEventListener('mouseup', mouseUpHandler);
+        document.removeEventListener('click', dragClickHandler);
+
+        elem.classList.remove("dragging");
+    }
+
+    // if the mouse was down for more than 250ms, treat this as a drag
+    //     and prevent the click event
+    // if the mouse was down for less than 250ms, treat this is a click
+    //     and let the click event occur
+    function dragClickHandler(e) {
+        const deltaT = Date.now() - mouseDownTime;
+        const dx = Math.abs(e.clientX - pos.x);
+        const dy = Math.abs(e.clientY - pos.y);
+        const minT = 250;
+        const minXY = 15;
+        if (deltaT > 250 || dx > minXY || dy > minXY) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+        }
+    }
+
+    // silly Firefox seems to ignore the draggable attribute
+    // so this is needed to stop the built-in drag/drop behavior
+    // for images
+    function dragStartHandler(e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+    }
+
+    elem.addEventListener("dragstart", dragStartHandler);
+    elem.addEventListener('mousedown', mouseDownHandler, true);
+
+    // return an object that contains a .clear() function that
+    // will clear all remaining event handlers
+    // This can be called when the drag behavior is no longer
+    // desired.
+    return {
+        clear: function() {
+            elem.removeEventListener('mousedown', mouseDownHandler);
+            elem.removeEventListener('dragstart', dragStartHandler);
+        }
+    }
+}
+
+function configureExpandos() {
+    let expandos = document.querySelectorAll(".captionImage.expando");
+    for (let expando of expandos) {
+        expando.addEventListener("click", function(e) {
+            let img = expando.querySelector("img");
+            let src = getSizeUrl(img.src, "X5");
+
+            // hide existing image and caption
+            expando.classList.add("hidden");
+            let div = document.createElement("div");
+            div.className = "expandedContainer";
+            div.setAttribute("draggable", "false");
+            div.innerHTML = `<img class="expanded" draggable="false" src="${src}">`;
+            const dragger = configureDragScroll(div);
+            div.addEventListener("click", function(e) {
+                expando.classList.remove("hidden");
+                div.parentNode.removeChild(div);
+                dragger.clear();
+            });
+            expando.parentNode.insertBefore(div, expando);
+        });
+    }
+}
+
+// Run initialization now
 configureArrowKeys();
 configureMenuClick();
+configureExpandos();

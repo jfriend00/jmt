@@ -68,11 +68,7 @@
         let mouseDownTime;
 
         function mouseDownHandler(e) {
-            console.log("mouseDownHandler");
-
             elem.classList.add("dragging");
-            elem.style.cursor = 'grabbing';
-            elem.style.userSelect = 'none';
 
             pos = {
                 left: elem.scrollLeft,
@@ -82,7 +78,7 @@
                 y: e.clientY,
             };
 
-            elem.addEventListener('click', dragClickHandler, {
+            document.addEventListener('click', dragClickHandler, {
                 capture: true, once: true
             });
             document.addEventListener('mousemove', mouseMoveHandler);
@@ -92,7 +88,6 @@
         }
 
         function mouseMoveHandler(e) {
-            console.log("mouseMoveHandler");
             // How far the mouse has been moved
             const dx = e.clientX - pos.x;
             const dy = e.clientY - pos.y;
@@ -103,12 +98,9 @@
         }
 
         function mouseUpHandler(e) {
-            console.log("mouseUpHandler");
-
-            elem.style.cursor = 'grab';
-            elem.style.removeProperty('user-select');
             document.removeEventListener('mousemove', mouseMoveHandler);
             document.removeEventListener('mouseup', mouseUpHandler);
+            document.removeEventListener('click', dragClickHandler);
 
             elem.classList.remove("dragging");
         }
@@ -118,13 +110,11 @@
         // if the mouse was down for less than 250ms, treat this is a click
         //     and let the click event occur
         function dragClickHandler(e) {
-            console.log("Got drag click handler");
             const deltaT = Date.now() - mouseDownTime;
             const dx = Math.abs(e.clientX - pos.x);
             const dy = Math.abs(e.clientY - pos.y);
             const minT = 250;
             const minXY = 15;
-            console.log(deltaT, dx, dy);
             if (deltaT > 250 || dx > minXY || dy > minXY) {
                 e.preventDefault();
                 e.stopImmediatePropagation();
@@ -134,12 +124,24 @@
         // silly Firefox seems to ignore the draggable attribute
         // so this is needed to stop the built-in drag/drop behavior
         // for images
-        elem.addEventListener("dragstart", function(e) {
-            console.log("dragstart")
+        function dragStartHandler(e) {
             e.preventDefault();
             e.stopImmediatePropagation();
-        });
+        }
+
+        elem.addEventListener("dragstart", dragStartHandler);
         elem.addEventListener('mousedown', mouseDownHandler, true);
+
+        // return an object that contains a .clear() function that
+        // will clear all remaining event handlers
+        // This can be called when the drag behavior is no longer
+        // desired.
+        return {
+            clear: function() {
+                elem.removeEventListener('mousedown', mouseDownHandler);
+                elem.removeEventListener('dragstart', dragStartHandler);
+            }
+        }
     }
 
     let expandos = document.querySelectorAll(".captionImage.expando");
@@ -154,10 +156,11 @@
             div.className = "expandedContainer";
             div.setAttribute("draggable", "false");
             div.innerHTML = `<img class="expanded" draggable="false" src="${src}">`;
-            configureDragScroll(div);
+            const dragger = configureDragScroll(div);
             div.addEventListener("click", function(e) {
                 expando.classList.remove("hidden");
                 div.parentNode.removeChild(div);
+                dragger.clear();
             });
             expando.parentNode.insertBefore(div, expando);
         });
