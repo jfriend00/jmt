@@ -1,6 +1,6 @@
 {# image with a caption (larger sizes available on Smugmug) #}
 {# todo item: add expando option for viewing larger sizes #}
-{%- macro photo(url, caption='') %}
+{%- macro photo(url, caption="") %}
 {%- set src = "https://photos.smugmug.com/photos" + url %}
 {%- if caption -%}
 <figure class="captionImage">
@@ -17,15 +17,16 @@
 {# image with a caption (no larger sizes available) #}
 {% macro image(url, caption="", float="") %}
 {%- set cls = ("photo " + float).trim() %}
+{%- set src = "images/" + url %}
 {%- if caption %}
 <figure class="captionImage">
-    <img class="{{cls}}" src="images/{{url}}" onload="captionLoaded(this)">
+    <img class="{{cls}}" src="{{src}}" onload="captionLoaded(this)">
     <figcaption>
         {{caption | safe}}
     </figcaption>
 </figure>
 {%- else %}
-<img class="{{cls}}" src="images/{{url}}">
+    <img class="{{cls}}" src="{{src}}">
 {%- endif %}
 {% endmacro %}
 
