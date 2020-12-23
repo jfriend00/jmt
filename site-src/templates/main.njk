@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="title">
-                <a href="" class="plain"><h2>The John Muir Trail</h2></a>
+                <h2>The John Muir Trail</h2>
             </div>
             <div id="navArrows" class="right">
                <a href="{{prevUrl}}"><img src="images/left-22.png"></a>
@@ -44,15 +44,15 @@
         {% endblock %}
         <p id="bottom-nav" class="center">
         {%- if prevUrl or prevUrl === "" %}
-           {% set foundPrev = true %}
+           {%- set foundPrev = true -%}
            <a href="{{prevUrl}}">{{prevName}}</a>
-        {%- endif %}
-        {%- if foundPrev and nextUrl %}
+        {%- endif -%}
+        {%- if foundPrev and nextUrl -%}
          |
-        {%- endif %}
-        {%- if nextUrl %}
+        {%- endif -%}
+        {%- if nextUrl -%}
            <a href="{{nextUrl}}">{{nextName}}</a>
-        {%- endif %}
+        {%- endif -%}
         </p>
 
     </div>
