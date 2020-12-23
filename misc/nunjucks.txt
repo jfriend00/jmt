@@ -1,0 +1,9 @@
+Two ways to use a "set" statement:
+
+{% set canonical = config.baseUrl + page.url %}
+
+or
+
+{% set canonical %}
+{{ config.baseUrl }}{{ page.url }}
+{% endset %}
