@@ -5,7 +5,7 @@
 <figure class="captionImage">
     <img class="photo" src="https://photos.smugmug.com/photos{{url}}" onload="captionLoaded(this)">
     <figcaption>
-        {{caption}}
+        {{caption | safe}}
     </figcaption>
 </figure>
 {%- else -%}
@@ -24,7 +24,7 @@
 <figure class="captionImage">
     <img class="{{cls}}" src="images/{{url}}" onload="captionLoaded(this)">
     <figcaption>
-        {{caption}}
+        {{caption | safe}}
     </figcaption>
 </figure>
 {%- else %}
@@ -43,7 +43,7 @@
     </div>
 {%- if caption %}
     <figcaption>
-        {{caption}}
+        {{caption | safe}}
     </figcaption>
 {%- endif %}
 </figure>
@@ -65,7 +65,7 @@
     <div class="videoContainer">
         {{makeYouTubeEmbed(id) | safe}}
     </div>
-    <div class="caption center">{{caption}}</div>
+    <div class="caption center">{{caption | safe}}</div>
 </div>
 {% else %}
     {{makeYouTubeEmbed(id) | safe}}
