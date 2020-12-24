@@ -151,6 +151,10 @@ img.right {
 }
 
 /* Images or videos with optional captions */
+.captionVideo {
+    margin: 1rem 0;
+}
+
 .captionImage, .captionVideo {
     font-size: 13pt;
     line-height: 1.3;
