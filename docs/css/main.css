@@ -5,9 +5,9 @@ body {
   overflow-y: scroll;
 }
 
-@media (pointer: fine) {
+@media (pointer: coarse) {
     body {
-        background-color: #900;
+        background-color: #00f;
     }
 }
 
