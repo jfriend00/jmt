@@ -8,6 +8,8 @@ Decide if I want a help icon?
 
 Decide if I want expando image height to be known so it will layout the right height immediately?
 
-Should we animate the expando height change?
+Should we animate the expando height change?  (actually don't know how because height is "auto" and you can't use CSS transition with auto height)
 
 How to indicate that panos are zoomable?
+
+Click outside of popup does not seem to work on old iPad
