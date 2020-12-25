@@ -262,6 +262,13 @@ img.right {
     overflow-y: auto;
 }
 
+/* adapt to devices which are touch as the primary pointer */
+@media (pointer: coarse) {
+    .popup {
+        line-height: 1.2;       /* space out menu items more on touch */
+    }
+}
+
 .popup-inner {
     position: relative;
 }
