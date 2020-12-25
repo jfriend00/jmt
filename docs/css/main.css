@@ -6,9 +6,9 @@ body {
   background-color: #000;
 }
 
-@media (any-hover: hover) {
+@media (hover: hover) {
     body {
-        background-color: #999;
+        background-color: #990;
     }
 }
 
