@@ -12,7 +12,6 @@ function log() {
         marker.id = "logger-end";
         marker.innerHTML = "<hr>";
         document.body.appendChild(marker);
-
     }
     let msg = document.createElement("div");
 
@@ -52,15 +51,12 @@ function configureArrowKeys() {
     });
 }
 
-function configureMenuClick() {
+function configureMenuClick(burgerSelector, popupSelector) {
     const debug = false;
-    const burger = document.querySelector("#menu .burger");
+    const burger = document.querySelector(burgerSelector);
 
     function isPopupVisible(popup) {
-        let style = window.getComputedStyle(popup);
-        let left = parseInt(style.left, 10);
-        if (debug) log("left is: " + left);
-        return left >= 0;
+        return popup.classList.contains("showing");
     }
 
     function closePopup(popup, e) {
@@ -70,9 +66,10 @@ function configureMenuClick() {
             e.stopImmediatePropagation();
         }
         if (!popup) {
-            popup = document.querySelector("#menu .popup");
+            popup = document.querySelector(popupSelector);
         }
-        popup.style.left = "-9999px";
+        popup.classList.remove("showing");
+        removeEventHandlers();
     }
 
     function checkClose(e) {
@@ -80,13 +77,13 @@ function configureMenuClick() {
             log("-----------------")
             log("checkClose");
         }
-        let popup = document.querySelector("#menu .popup");
+        let popup = document.querySelector(popupSelector);
         if (isPopupVisible(popup)) {
             // if target is the burger, let the click go
             // because the click handler on the burger will close the menu
             if (e.target !== burger) {
                 // now check if e.target is in the popup
-                let parentPopup = e.target.closest(".popup");
+                let parentPopup = e.target.closest(popupSelector);
                 if (!parentPopup) {
                     if (debug) log("click detected outside popup, so close popup")
                     closePopup(popup, e);
@@ -104,29 +101,42 @@ function configureMenuClick() {
             log("-----------------")
         }
     }
-    // capture other events that should close the menu
-    window.addEventListener("click", checkClose, true);
-    //    window.addEventListener("touchstart", checkClose, true);
-    window.addEventListener("keydown", function(e) {
+
+    function checkKeyClose(e) {
         // if Esc key, then close menu
         if (e.keyCode === 27) {
-            let popup = document.querySelector("#menu .popup");
+            let popup = document.querySelector(popupSelector);
             if (isPopupVisible(popup)) {
                 closePopup(popup);
             }
         }
-    }, true);
+    }
+
+    function clearEventHandlers() {
+        window.removeEventListener("click", checkClose, true);
+        window.removeEventListener("keydown", checkKeyClose, true);
+    }
+
+    function addEventHandlers() {
+        // capture other events that should close the menu
+        window.addEventListener("click", checkClose, true);
+        //    window.addEventListener("touchstart", checkClose, true);
+        window.addEventListener("keydown", checkKeyClose, true);
+    }
+
 
     burger.addEventListener("click", function(e) {
         if (debug) log("click on burger");
-        let popup = document.querySelector("#menu .popup");
+        let popup = document.querySelector(popupSelector);
         // toggle the popup
         if (isPopupVisible(popup)) {
             if (debug) log("hiding popup");
-            popup.style.left = "-9999px";
+            popup.classList.remove("showing");
+            clearEventHandlers();
         } else {
             if (debug) log("showing popup");
-            popup.style.left = "0";
+            popup.classList.add("showing");
+            addEventHandlers();
         }
     });
 }
@@ -292,5 +302,5 @@ function configureExpandos() {
 
 // Run initialization now
 configureArrowKeys();
-configureMenuClick();
+configureMenuClick("#menu .burger", "#menu .popup");
 configureExpandos();

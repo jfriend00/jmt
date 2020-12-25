@@ -249,8 +249,8 @@ img.right {
 
 .popup {
     position: absolute;
-    top: 22px;
     left: -9999px;
+    top: 22px;
     max-height: 85vh;    /* add scrollbar if needed */
     max-width: 95vw;
     border: 1px solid black;
@@ -261,6 +261,10 @@ img.right {
     background-color: white;
     overflow-x: hidden;
     overflow-y: auto;
+}
+
+.popup.showing {
+    left: 0;
 }
 
 /* adapt to devices which are touch as the primary pointer */
