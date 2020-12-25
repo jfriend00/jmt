@@ -261,9 +261,10 @@ function configureExpandos() {
                 // to limit how much we grow the element to the max dimentions of the image
                 // TODO: if content is already 100%, then skip all of this width setting
                 let windowWidth = document.documentElement.clientWidth;
-                let contentWidth = contentContainer.clientWidth;
-                let leftMargin = Math.round((windowWidth - contentWidth) / 2);
-                let rightMargin = windowWidth - leftMargin - contentWidth;
+                let computedWidth = parseInt(window.getComputedStyle(contentContainer).width, 10);
+
+                let leftMargin = Math.round((windowWidth - computedWidth) / 2);
+                let rightMargin = windowWidth - leftMargin - computedWidth;
                 div.style["margin-left"] = `-${leftMargin}px`;
                 div.style["margin-right"] = `-${rightMargin}px`;
                 div.style.width = `${windowWidth}px`;

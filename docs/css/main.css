@@ -64,7 +64,7 @@ img.right {
   width: 100%;
   background-color: #AAA;
   z-index: 1;                 /* keep embeded youtube from overlapping */
-  box-sizing: border-box;
+  box-sizing: border-box;     /* handles the scrollbar width better */
   line-height: normal;
 }
 

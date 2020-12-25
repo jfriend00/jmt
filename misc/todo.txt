@@ -1,9 +1,15 @@
 Issues:
 
-If header wraps and gets taller than expected, then top margin on main content is not large enough and some the top of the page is obscured.
+Expando for video to go full width, but not full screen
 
-Header is wrapping on Mobile - possible fix to set padding based on vw units or make font breaks for smaller screens.
+Decide whether expando for images should be full-size images or full-width screen or auto-detect if images are already full width?
 
-Implement hamburger navigation
+Decide if I want a help icon?
 
-Put navigation into templates instead of via client-side Javascript
+Decide if I want expando image height to be known so it will layout the right height immediately?
+
+Should we animate the expando height change?
+
+How to indicate that panos are zoomable?
+
+Fix right side of expando that isn't show the whole image
