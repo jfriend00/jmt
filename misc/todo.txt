@@ -11,5 +11,3 @@ Decide if I want expando image height to be known so it will layout the right he
 Should we animate the expando height change?
 
 How to indicate that panos are zoomable?
-
-Fix right side of expando that isn't show the whole image
