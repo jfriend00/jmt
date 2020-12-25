@@ -265,7 +265,7 @@ img.right {
 /* adapt to devices which are touch as the primary pointer */
 @media (pointer: coarse) {
     .popup {
-        line-height: 1.2;       /* space out menu items more on touch */
+        line-height: 1.5;       /* space out menu items more on touch */
     }
 }
 
