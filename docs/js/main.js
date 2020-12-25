@@ -53,7 +53,7 @@ function configureArrowKeys() {
 }
 
 function configureMenuClick() {
-    const debug = false;
+    const debug = true;
     const burger = document.querySelector("#menu .burger");
 
     function isPopupVisible(popup) {
