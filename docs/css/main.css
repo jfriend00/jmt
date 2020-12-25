@@ -5,10 +5,17 @@ body {
   overflow-y: scroll;
 }
 
+/* pointer: coarse
+      yes for older iPad
+      no for chrome desktop
+      Yes for android
+*/
+
 @media (pointer: coarse) {
+    /*
     body {
         background-color: #00f;
-    }
+    } */
 }
 
 h1, h2, h3 {
