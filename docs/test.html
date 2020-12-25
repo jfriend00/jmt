@@ -29,6 +29,28 @@
     }
     </style>
 <body>
+
+    Some regular text outside of any table<br>
+    And, more text<br>
+    And, more text<br>
+
+    <table width='100%'>
+        <tr>
+            <td>normal table row</td>
+        </tr>
+        <tr onclick=''>
+            <td>row has onclick</td>
+        </tr>
+        <tr style='cursor: pointer'>
+            <td>row has pointer cursor</td>
+        </tr>
+    </table>
+
+    document.addEventListener('click', function(e) {
+        alert('row clicked');
+    });
+
+
     <p>Here's some text before</p>
     <figure class="captionImage expando">
         <img class="photo" src="https://photos.smugmug.com/photos/i-Bx7RMpc/0/25b951e5/L/i-Bx7RMpc-L.png">
