@@ -5,6 +5,12 @@ body {
   overflow-y: scroll;
 }
 
+@media (any-hover: hover) {
+    body {
+        background-color: #777;
+    }
+}
+
 h1, h2, h3 {
     line-height: normal;
 }
@@ -297,11 +303,11 @@ img.right {
     overflow: hidden;
     overflow-x: auto;
     overflow-y: auto;
-    cursor: grab;
+    cursor: move;
 }
 
 .dragging {
-    cursor: grabbing;
+    cursor: move;
     user-select: none;
 }
 /* ---------------- */
