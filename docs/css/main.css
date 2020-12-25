@@ -5,9 +5,9 @@ body {
   overflow-y: scroll;
 }
 
-@media (hover: hover) {
+@media (pointer: fine) {
     body {
-        background-color: #990;
+        background-color: #900;
     }
 }
 
