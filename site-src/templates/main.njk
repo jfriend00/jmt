@@ -15,8 +15,12 @@
   </noscript>
 </head>
 <body>
+{#-
+    This extra div with the null onclick handler is just to make Safari mobile give
+    us actual click events outside of images
+-#}
 <div onclick="void(0);">
-    <div class="header" onclick="void(0);">
+    <div class="header">
         <div class="container">
             <div id="menu" class="left menu">
                 <img class="burger" src="images/hamburger-17x22-3.png">
@@ -40,7 +44,7 @@
            </div>
         </div>
     </div>
-    <div id="content" class="content centerBox" onclick="void(0);">
+    <div id="content" class="content centerBox">
         {% block content %}
         {% endblock %}
         <p id="bottom-nav" class="center">
