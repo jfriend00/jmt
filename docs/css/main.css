@@ -1,13 +1,9 @@
-html {
-    cursor: pointer;
-}
-
 body {
   margin: 0;
   font-size: 14pt;
   line-height: 1.4;
   overflow-y: scroll;
-  background: #A00;
+  background: #0A0;
 }
 
 /* pointer: coarse
