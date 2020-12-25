@@ -61,15 +61,13 @@ function pointInRect(rect, x, y, margin) {
 }
 
 // clickParent may be passed as a selector DOM element
-function configureMenuClick(burgerSelector, popupSelector, clickParent = null, clickMargin = 20) {
+function configureMenuClick(burgerSelector, popupSelector, clickParent = null, clickMargin = 0) {
     const debug = false;
     const burger = document.querySelector(burgerSelector);
     if (!clickParent) {
         clickParent = burger;
-    } else {
-        if (typeof clickParent === "string") {
-            clickParent = document.querySelector(clickParent);
-        }
+    } else if (typeof clickParent === "string") {
+        clickParent = document.querySelector(clickParent);
     }
 
     function isPopupVisible(popup) {
@@ -129,6 +127,8 @@ function configureMenuClick(burgerSelector, popupSelector, clickParent = null, c
         }
     }
 
+    // remove the transient click handlers that aren't needed when the
+    // popup menu is down
     function clearEventHandlers() {
         window.removeEventListener("click", checkClose, true);
         window.removeEventListener("keydown", checkKeyClose, true);
@@ -311,11 +311,11 @@ function configureExpandos() {
             div.innerHTML = `<img class="expanded" draggable="false" src="${src}">`;
             const dragger = configureDragScroll(div);
 
-            // handle click to close
+            // handle click anywhere in our expando div to close it all
             div.addEventListener("click", function(e) {
                 window.removeEventListener("resize", configureExpandedSize);
                 expando.classList.remove("hidden");
-                div.parentNode.removeChild(div);
+                div.remove();
                 dragger.clear();
             });
             // insert into DOM
