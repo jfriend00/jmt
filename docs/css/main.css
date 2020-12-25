@@ -3,8 +3,8 @@ body {
   font-size: 14pt;
   line-height: 1.4;
   overflow-y: scroll;
-  cursor: pointer;
-  background: #AAA;
+/*  cursor: pointer; */
+  background: #00A;
 }
 
 /* pointer: coarse
