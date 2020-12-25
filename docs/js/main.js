@@ -51,9 +51,26 @@ function configureArrowKeys() {
     });
 }
 
-function configureMenuClick(burgerSelector, popupSelector) {
+// accepts a rect that has top, left, right, bottom (like a DOMRect object)
+function pointInRect(rect, x, y, margin) {
+    const top = rect.top - margin;
+    const left = rect.left - margin;
+    const right = rect.right + margin;
+    const bottom = rect.bottom + margin;
+    return (x >= left && x <= right && y >= top && y <= bottom);
+}
+
+// clickParent may be passed as a selector DOM element
+function configureMenuClick(burgerSelector, popupSelector, clickParent = null, clickMargin = 20) {
     const debug = false;
     const burger = document.querySelector(burgerSelector);
+    if (!clickParent) {
+        clickParent = burger;
+    } else {
+        if (typeof clickParent === "string") {
+            clickParent = document.querySelector(clickParent);
+        }
+    }
 
     function isPopupVisible(popup) {
         return popup.classList.contains("showing");
@@ -69,7 +86,7 @@ function configureMenuClick(burgerSelector, popupSelector) {
             popup = document.querySelector(popupSelector);
         }
         popup.classList.remove("showing");
-        removeEventHandlers();
+        clearEventHandlers();
     }
 
     function checkClose(e) {
@@ -125,18 +142,27 @@ function configureMenuClick(burgerSelector, popupSelector) {
     }
 
 
-    burger.addEventListener("click", function(e) {
-        if (debug) log("click on burger");
-        let popup = document.querySelector(popupSelector);
-        // toggle the popup
-        if (isPopupVisible(popup)) {
-            if (debug) log("hiding popup");
-            popup.classList.remove("showing");
-            clearEventHandlers();
+    clickParent.addEventListener("click", function(e) {
+        // check if the click is actually close enough to the burger
+        // e.clientX, e.clientY coordinate within the viewport
+        // element.getBoundingClientRect(); provides top, left, bottom, right
+        //    relative to the viewport
+        // isPointInRect(domRect, x, y, margin)
+        if (pointInRect(burger.getBoundingClientRect(), e.clientX, e.clientY, clickMargin)) {
+            if (debug) log("click on burger or its margin");
+            let popup = document.querySelector(popupSelector);
+            // toggle the popup
+            if (isPopupVisible(popup)) {
+                if (debug) log("hiding popup");
+                popup.classList.remove("showing");
+                clearEventHandlers();
+            } else {
+                if (debug) log("showing popup");
+                popup.classList.add("showing");
+                addEventHandlers();
+            }
         } else {
-            if (debug) log("showing popup");
-            popup.classList.add("showing");
-            addEventHandlers();
+            if (debug) log("click in parent, outside of burger margin");
         }
     });
 }
@@ -302,5 +328,5 @@ function configureExpandos() {
 
 // Run initialization now
 configureArrowKeys();
-configureMenuClick("#menu .burger", "#menu .popup");
+configureMenuClick("#menu .burger", "#menu .popup", ".header", 20);
 configureExpandos();
