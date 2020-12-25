@@ -12,4 +12,4 @@ Should we animate the expando height change?  (actually don't know how because h
 
 How to indicate that panos are zoomable?
 
-Click outside of popup does not seem to work on old iPad
+Click outside of popup does not seem to work on old iPad except when clicking in an image
