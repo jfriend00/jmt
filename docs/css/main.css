@@ -4,6 +4,7 @@ body {
   line-height: 1.4;
   overflow-y: scroll;
   /* background: #00A; */
+  cursor: pointer;
 }
 
 /* pointer: coarse
@@ -84,6 +85,10 @@ img.right {
 
 #navArrows .spacer {
     margin: 0 5px;
+}
+
+#navArrows img:hover {
+    filter: invert(1);
 }
 
 /* Make header not be sticky if viewport height is less than some amount */
@@ -245,6 +250,10 @@ img.right {
 
 .burger {
     text-decoration: none;
+}
+
+.burger:hover {
+    filter: invert(1);
 }
 
 .popup {
