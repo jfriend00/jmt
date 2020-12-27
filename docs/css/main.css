@@ -330,6 +330,15 @@ img.right {
     overflow: hidden;
     overflow-x: auto;
     overflow-y: auto;
+    padding: 0 5px;
+    box-sizing: border-box;
+}
+
+img.expanded.fit {
+    width: 100%;
+}
+
+img.expanded.max {
     cursor: move;
 }
 

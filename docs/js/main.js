@@ -275,12 +275,40 @@ function configureDragScroll(elem) {
     }
 }
 
+// these are the Smugmug pre-built widths
+const smWidths = [
+    { token: "S", width: 400 },
+    { token: "M", width: 600 },
+    { token: "L", width: 800 },
+    { token: "XL", width: 1024 },
+    { token: "X2", width: 1280 },
+    { token: "X3", width: 1600 },
+    { token: "X4", width: 2048 },
+    { token: "X5", width: 2560 },
+    { token: "4K", width: 3840 }
+];
+
+// figure out which Smugmug pre-built size is equal to or larger
+// than the desired width
+function calcDesiredPhotoSize(width) {
+    for (let item of smWidths) {
+        if (item.width >= width) {
+            return item.token;
+        }
+    }
+    return "4K"; // return largest size we have
+}
+
 function configureExpandos() {
     let expandos = document.querySelectorAll(".captionImage.expando");
     for (let expando of expandos) {
         expando.addEventListener("click", function(e) {
-            let img = expando.querySelector("img");
-            let src = getSizeUrl(img.src, "X5");
+
+            // Todo items:
+            //    - If no more room to expand, then skip the "fit" state
+            //    - Add close icon
+
+            const origSrc = expando.querySelector("img").src;
 
             // hide existing image and caption
             expando.classList.add("hidden");
@@ -296,27 +324,67 @@ function configureExpandos() {
                 // TODO: use the data-width and data-height attributes off the expando image
                 // to limit how much we grow the element to the max dimentions of the image
                 // TODO: if content is already 100%, then skip all of this width setting
-                let windowWidth = document.documentElement.clientWidth;
-                let computedWidth = parseInt(window.getComputedStyle(contentContainer).width, 10);
 
+                const windowWidth = document.documentElement.clientWidth;
+                const computedWidth = parseInt(window.getComputedStyle(contentContainer).width, 10);
                 let leftMargin = Math.round((windowWidth - computedWidth) / 2);
                 let rightMargin = windowWidth - leftMargin - computedWidth;
                 div.style["margin-left"] = `-${leftMargin}px`;
                 div.style["margin-right"] = `-${rightMargin}px`;
                 div.style.width = `${windowWidth}px`;
+
+                // now configure the image size/url for a "fit"
+                let exImg = div.querySelector("img.expanded");
+                const sizeTag = calcDesiredPhotoSize(windowWidth);
+                let newSrc = getSizeUrl(origSrc, sizeTag);
+                const minLeftMargin = 50;
+                if (!exImg) {
+                    // if leftMargin is below some threshold, then there really isn't any room to
+                    // do the "fit" state so go directly to the "max" state
+                    // Note that leftMargin will include any padding on the container so it won't
+                    // ever be zero
+                    if (Math.abs(leftMargin) >= minLeftMargin) {
+                        div.innerHTML = `<img class="expanded fit" draggable="false" src="${newSrc}">`;
+                    } else {
+                        newSrc = getSizeUrl(origSrc, "X5");
+                        div.innerHTML = `<img class="expanded max" draggable="false" src="${newSrc}">`;
+                    }
+                } else {
+                    // adjust to new available size
+                    if (exImg.src !== newSrc) {
+                        exImg.src = newSrc;
+                    }
+                }
             }
+
+            // we have two states for the expanded image
+            // "fit" means that it fits to the wdith of the window
+            // "max" means that it is scrollable and shows the full size of the image
 
             // set up the size parameters
             configureExpandedSize();
-            div.innerHTML = `<img class="expanded" draggable="false" src="${src}">`;
             const dragger = configureDragScroll(div);
 
-            // handle click anywhere in our expando div to close it all
+            // handle click anywhere in our expando div to cycle to the next state
+            // If there is room in the window to expand, then the original state it goes to is "fit"
+            // If not, then it goes immediately to "max"
+            // A click on the "fit" state will go to max
+            // A click on the "max" state will go back to unexpanded
             div.addEventListener("click", function(e) {
-                window.removeEventListener("resize", configureExpandedSize);
-                expando.classList.remove("hidden");
-                div.remove();
-                dragger.clear();
+                let exImg = div.querySelector("img.expanded");
+                // if in the "fit state"
+                if (exImg.classList.contains("fit")) {
+                    exImg.classList.remove("fit");
+                    exImg.classList.add("max");
+                    exImg.src = getSizeUrl(origSrc, "X5");
+                } else {
+                    // not in the fit state, so must be in the max state already
+                    // time to close it down
+                    window.removeEventListener("resize", configureExpandedSize);
+                    expando.classList.remove("hidden");
+                    div.remove();
+                    dragger.clear();
+                }
             });
             // insert into DOM
             expando.parentNode.insertBefore(div, expando);
