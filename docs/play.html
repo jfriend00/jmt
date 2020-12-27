@@ -16,7 +16,7 @@
             position: relative;
         }
         /* close X */
-        .close {
+        .imgContainer::after {
             display: block;
             position: absolute;
             height: 25px;
@@ -29,9 +29,9 @@
             vertical-align: middle;
             font-weight: bold;
             font-size: 18px;
-            background-color: #fff;
-            opacity: .75;
+            background-color: rgba(255,255,255,.65);
             cursor: default;
+            content: "\2715";
         }
 
         .imgContainer .photo {
@@ -42,7 +42,7 @@
 <body>
     <div class="imgContainer">
         <img class="photo" src="https://photos.smugmug.com/photos/i-3gndgbh/1/4e63f3f5/L/i-3gndgbh-L.jpg">
-        <div class="close">&#x2715</div>
+        <!-- <div class="close">&#x2715</div>-->
     </div>
 </body>
 </html>
