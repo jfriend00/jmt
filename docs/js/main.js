@@ -329,7 +329,6 @@ function configureExpandos() {
                 //    of the overall browser window
                 // TODO: use the data-width and data-height attributes off the expando image
                 // to limit how much we grow the element to the max dimentions of the image
-                // TODO: if content is already 100%, then skip all of this width setting
 
                 const windowWidth = document.documentElement.clientWidth;
                 const computedWidth = parseInt(window.getComputedStyle(contentContainer).width, 10);
