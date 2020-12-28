@@ -72,6 +72,7 @@ img.right {
 }
 
 .header {
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   padding: 0.25em;
