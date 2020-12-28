@@ -343,9 +343,15 @@ img.right {
     box-sizing: border-box;
 }
 
+img.expanded {
+    object-fit: scale-down;
+    margin: 0 auto;
+    display: block;
+}
+
 img.expanded.fit {
-    width: 100%;
     cursor: zoom-in;
+    width: 100%;
 }
 
 img.expanded.max {
