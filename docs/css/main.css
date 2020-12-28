@@ -366,7 +366,7 @@ img.expanded.max {
     top: 20px;
     right: 20px;
     border-radius: 50%;
-    background-color: rgba(255,255,255,.5);
+    background-color: rgba(255,255,255,.65);
     cursor: default;
     user-select: none;
 }
