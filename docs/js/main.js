@@ -304,9 +304,7 @@ function configureExpandos() {
     for (let expando of expandos) {
         expando.addEventListener("click", function(e) {
 
-            // Todo items:
-            //    - Add close icon
-
+            const fullExpandoOnly = expando.classList.contains("full");
             const origSrc = expando.querySelector("img").src;
 
             // hide existing image and caption
@@ -349,7 +347,7 @@ function configureExpandos() {
                         // do the "fit" state so go directly to the "max" state
                         // Note that leftMargin will include any padding on the container so it won't
                         // ever be zero
-                        if (Math.abs(leftMargin) >= minLeftMargin) {
+                        if (!fullExpandoOnly && Math.abs(leftMargin) >= minLeftMargin) {
                             div.innerHTML = `<img class="expanded fit" draggable="false" src="${newSrc}">`;
                         } else {
                             newSrc = getSizeUrl(origSrc, "X5");

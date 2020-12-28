@@ -31,8 +31,8 @@
 {% endmacro %}
 
 {# photo with a caption (expando) #}
-{% macro expandoPhoto(url, caption='', zoom='', zoomStyle='') %}
-<figure class="captionImage expando">
+{% macro expandoPhoto(url, caption='', fullOnly='', zoom='', zoomStyle='') %}
+<figure class="captionImage expando{% if fullOnly %} full{% endif %}">
     <div class="wrapper">
         <img class="photo" src="https://photos.smugmug.com/photos{{url}}" onload="captionLoaded(this)">
 {%- if zoom or zoomStyle %}
