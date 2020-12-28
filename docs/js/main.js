@@ -323,9 +323,9 @@ function configureExpandos() {
             zoomParent.appendChild(div);
 
             // create close icon
-            const closeIcon = document.createElement("div");
+            const closeIcon = document.createElement("img");
             closeIcon.className = "closeIcon";
-            closeIcon.innerHTML = "&#x2715"; // diagonal cross (or multiplication X)
+            closeIcon.src = "images/close.svg";
             zoomParent.appendChild(closeIcon);
             // make a click in the close icon, close the zoom window
             closeIcon.addEventListener("click", closeZoom);
