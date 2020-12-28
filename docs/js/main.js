@@ -332,7 +332,9 @@ function configureExpandos() {
 
             const contentContainer = expando.closest(".content");
 
-            function configureExpandedSize() {
+            let resizeTimer;
+
+            function configureExpandedSize(isResize = false) {
                 // now set up the width of the container
                 // document.documentElement.clientWidth is the width inside the scrollbars
                 //    of the overall browser window
@@ -348,28 +350,41 @@ function configureExpandos() {
                 zoomParent.style["margin-right"] = `-${rightMargin}px`;
                 zoomParent.style.width = `${windowWidth}px`;
 
-                // now configure the image size/url for a "fit"
-                let exImg = div.querySelector("img.expanded");
-                const sizeTag = calcDesiredPhotoSize(windowWidth);
-                let newSrc = getSizeUrl(origSrc, sizeTag);
-                const minLeftMargin = 50;
-                if (!exImg) {
-                    // if leftMargin is below some threshold, then there really isn't any room to
-                    // do the "fit" state so go directly to the "max" state
-                    // Note that leftMargin will include any padding on the container so it won't
-                    // ever be zero
-                    if (Math.abs(leftMargin) >= minLeftMargin) {
-                        div.innerHTML = `<img class="expanded fit" draggable="false" src="${newSrc}">`;
-                    } else {
-                        newSrc = getSizeUrl(origSrc, "X5");
-                        div.innerHTML = `<img class="expanded max" draggable="false" src="${newSrc}">`;
+                function applySize() {
+                    // now configure the image size/url for a "fit"
+                    let exImg = div.querySelector("img.expanded");
+                    const sizeTag = calcDesiredPhotoSize(windowWidth);
+                    let newSrc = getSizeUrl(origSrc, sizeTag);
+                    const minLeftMargin = 50;
+                    if (!exImg) {
+                        // if leftMargin is below some threshold, then there really isn't any room to
+                        // do the "fit" state so go directly to the "max" state
+                        // Note that leftMargin will include any padding on the container so it won't
+                        // ever be zero
+                        if (Math.abs(leftMargin) >= minLeftMargin) {
+                            div.innerHTML = `<img class="expanded fit" draggable="false" src="${newSrc}">`;
+                        } else {
+                            newSrc = getSizeUrl(origSrc, "X5");
+                            div.innerHTML = `<img class="expanded max" draggable="false" src="${newSrc}">`;
+                        }
+                    } else if (exImg.classList.contains("fit")) {
+                        // adjust "fit" state to new available size
+                        if (exImg.src !== newSrc) {
+                            exImg.src = newSrc;
+                        }
                     }
-                } else if (exImg.classList.contains("fit")) {
-                    // adjust "fit" state to new available size
-                    if (exImg.src !== newSrc) {
-                        console.log(`Setting newSize ${sizeTag}, ${newSrc}`);
-                        exImg.src = newSrc;
-                    }
+                }
+
+                // on resize, we don't want to actually change the img.src until they are done resizing
+                // which we will assume is a pause of movement for 0.3s
+                const resizeTimeout = 300;
+                if (isResize) {
+                    // clear any previous timer
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(applySize, resizeTimeout);
+                } else {
+                    // not resizing, apply the new size immediately
+                    applySize();
                 }
             }
 
@@ -382,10 +397,14 @@ function configureExpandos() {
             const dragger = configureDragScroll(div);
 
             function closeZoom() {
-                window.removeEventListener("resize", configureExpandedSize);
+                window.removeEventListener("resize", resize);
                 expando.classList.remove("hidden");
                 zoomParent.remove();
                 dragger.clear();
+            }
+
+            function resize() {
+                configureExpandedSize(true);
             }
 
             // handle click anywhere in our expando div to cycle to the next state
@@ -409,7 +428,7 @@ function configureExpandos() {
             // insert into DOM
             expando.parentNode.insertBefore(zoomParent, expando);
             // readjust sizing whenever window size changes
-            window.addEventListener("resize", configureExpandedSize);
+            window.addEventListener("resize", resize);
         });
     }
 }

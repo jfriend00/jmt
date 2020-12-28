@@ -11,5 +11,3 @@ Decide if I want expando image height to be known so it will layout the right he
 Should we animate the expando height change?  (actually don't know how because height is "auto" and you can't use CSS transition with auto height)
 
 How to indicate that panos are zoomable?
-
-Dynamically change expando image content only after resize is done
