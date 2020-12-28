@@ -313,25 +313,14 @@ function configureExpandos() {
             expando.classList.add("hidden");
 
             // create zoomParent
-            const zoomParent = document.createElement("div");
-            zoomParent.className = "zoomParent";
+            const zoomParent = document.querySelector("#zoomTemplate .zoomParent").cloneNode(true);
+            const div = zoomParent.querySelector(".expandedContainer");
+            const closeIcon = zoomParent.querySelector(".closeIcon");
 
-            // create zoom scroll container
-            const div = document.createElement("div");
-            div.className = "expandedContainer";
-            div.setAttribute("draggable", "false");
-            zoomParent.appendChild(div);
-
-            // create close icon
-            const closeIcon = document.createElement("img");
-            closeIcon.className = "closeIcon";
-            closeIcon.src = "images/close.svg";
-            zoomParent.appendChild(closeIcon);
             // make a click in the close icon, close the zoom window
             closeIcon.addEventListener("click", closeZoom);
 
             const contentContainer = expando.closest(".content");
-
             let resizeTimer;
 
             function configureExpandedSize(isResize = false) {
