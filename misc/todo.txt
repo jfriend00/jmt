@@ -2,8 +2,6 @@ Issues:
 
 Expando for video to go full width, but not full screen
 
-Decide whether expando for images should be full-size images or full-width screen or auto-detect if images are already full width?
-
 Decide if I want a help icon?
 
 Decide if I want expando image height to be known so it will layout the right height immediately?
