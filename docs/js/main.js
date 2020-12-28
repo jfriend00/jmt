@@ -305,17 +305,32 @@ function configureExpandos() {
         expando.addEventListener("click", function(e) {
 
             // Todo items:
-            //    - If no more room to expand, then skip the "fit" state
             //    - Add close icon
 
             const origSrc = expando.querySelector("img").src;
 
             // hide existing image and caption
             expando.classList.add("hidden");
-            let div = document.createElement("div");
+
+            // create zoomParent
+            const zoomParent = document.createElement("div");
+            zoomParent.className = "zoomParent";
+
+            // create zoom scroll container
+            const div = document.createElement("div");
             div.className = "expandedContainer";
             div.setAttribute("draggable", "false");
-            let contentContainer = expando.closest(".content");
+            zoomParent.appendChild(div);
+
+            // create close icon
+            const closeIcon = document.createElement("div");
+            closeIcon.className = "closeIcon";
+            closeIcon.innerHTML = "&#x2715"; // diagonal cross (or multiplication X)
+            zoomParent.appendChild(closeIcon);
+            // make a click in the close icon, close the zoom window
+            closeIcon.addEventListener("click", closeZoom);
+
+            const contentContainer = expando.closest(".content");
 
             function configureExpandedSize() {
                 // now set up the width of the container
@@ -329,9 +344,9 @@ function configureExpandos() {
                 const computedWidth = parseInt(window.getComputedStyle(contentContainer).width, 10);
                 let leftMargin = Math.round((windowWidth - computedWidth) / 2);
                 let rightMargin = windowWidth - leftMargin - computedWidth;
-                div.style["margin-left"] = `-${leftMargin}px`;
-                div.style["margin-right"] = `-${rightMargin}px`;
-                div.style.width = `${windowWidth}px`;
+                zoomParent.style["margin-left"] = `-${leftMargin}px`;
+                zoomParent.style["margin-right"] = `-${rightMargin}px`;
+                zoomParent.style.width = `${windowWidth}px`;
 
                 // now configure the image size/url for a "fit"
                 let exImg = div.querySelector("img.expanded");
@@ -349,9 +364,10 @@ function configureExpandos() {
                         newSrc = getSizeUrl(origSrc, "X5");
                         div.innerHTML = `<img class="expanded max" draggable="false" src="${newSrc}">`;
                     }
-                } else {
-                    // adjust to new available size
+                } else if (exImg.classList.contains("fit")) {
+                    // adjust "fit" state to new available size
                     if (exImg.src !== newSrc) {
+                        console.log(`Setting newSize ${sizeTag}, ${newSrc}`);
                         exImg.src = newSrc;
                     }
                 }
@@ -364,6 +380,13 @@ function configureExpandos() {
             // set up the size parameters
             configureExpandedSize();
             const dragger = configureDragScroll(div);
+
+            function closeZoom() {
+                window.removeEventListener("resize", configureExpandedSize);
+                expando.classList.remove("hidden");
+                zoomParent.remove();
+                dragger.clear();
+            }
 
             // handle click anywhere in our expando div to cycle to the next state
             // If there is room in the window to expand, then the original state it goes to is "fit"
@@ -380,14 +403,11 @@ function configureExpandos() {
                 } else {
                     // not in the fit state, so must be in the max state already
                     // time to close it down
-                    window.removeEventListener("resize", configureExpandedSize);
-                    expando.classList.remove("hidden");
-                    div.remove();
-                    dragger.clear();
+                    closeZoom();
                 }
             });
             // insert into DOM
-            expando.parentNode.insertBefore(div, expando);
+            expando.parentNode.insertBefore(zoomParent, expando);
             // readjust sizing whenever window size changes
             window.addEventListener("resize", configureExpandedSize);
         });
